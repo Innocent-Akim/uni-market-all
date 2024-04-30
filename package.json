@@ -1,0 +1,16 @@
+{
+  "name": "UNIMARKET",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev:all": "pnpm run --parallel dev",
+    "build:api": "pnpm --filter api build",
+    "build:app": "pnpm --filter web build",
+    "start:api": "pnpm --filter api start:prod",
+    "start:app": "pnpm --filter app start"
+  },
+  "keywords": [],
+  "author": "UNI-MARKET",
+  "license": "ISC"
+}
