@@ -1,10 +1,10 @@
-import * as dotenv from 'dotenv';
-dotenv.config();
+
+
 import { INestApplication } from '@nestjs/common';
 import { NestFactory } from '@nestjs/core';
 import { NestExpressApplication } from '@nestjs/platform-express';
 import { urlencoded } from 'express';
-import { ApplicationPluginConfig } from 'src/databases';
+import { ApplicationPluginConfig } from '@uni/databases';
 
 export async function bootstrap(
     pluginConfig?: Partial<ApplicationPluginConfig>,

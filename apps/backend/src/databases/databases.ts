@@ -16,6 +16,7 @@ console.log('DB Idle Timeout: ' + idleTimeoutMillis);
 console.log('DB Slow Query Logging Timeout: ' + dbSlowQueryLoggingTimeout);
 console.log('DB SSL Mode: ' + process.env.DB_SSL_MODE);
 console.log('DB SSL MODE ENABLE: ' + dbSslMode);
+console.log('DATABASE NAME: ' + process.env.DB_NAME);
 switch (dbType) {
     case DatabaseTypeEnum.mysql:
         const typeOrmMySqlOptions: MysqlConnectionOptions = {
