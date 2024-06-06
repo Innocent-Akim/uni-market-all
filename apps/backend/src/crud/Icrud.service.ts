@@ -1,3 +1,4 @@
+import { IPagination } from '@uni/contracts';
 import {
 	DeepPartial,
 	DeleteResult,
@@ -12,8 +13,8 @@ import { QueryDeepPartialEntity } from 'typeorm/query-builder/QueryPartialEntity
 export interface ICrudService<T> {
 	count(filter?: IFindManyOptions<T>): Promise<number>;
 	countBy(filter?: ICountByOptions<T>): Promise<number>;
-	// findAll(filter?: IFindManyOptions<T>): Promise<IPagination<T>>;
-	// paginate(filter?: IFindManyOptions<T>): Promise<IPagination<T>>;
+	findAll(filter?: IFindManyOptions<T>): Promise<IPagination<T>>;
+	paginate(filter?: IFindManyOptions<T>): Promise<IPagination<T>>;
 	findOneByIdString(id: string, options?: IFindOneOptions<T>): Promise<T>;
 	// findOneOrFailByIdString(id: string, options?: IFindOneOptions<T>): Promise<ITryRequest<T>>;
 	findOneByOptions(options: IFindOneOptions<T>): Promise<T>;
@@ -22,7 +23,7 @@ export interface ICrudService<T> {
 	// findOneOrFailByWhereOptions(options: IFindWhereOptions<T>): Promise<ITryRequest<T>>;
 	create(entity: IPartialEntity<T>, ...options: any[]): Promise<T>;
 	save(entity: IPartialEntity<T>): Promise<T>;
-	// update(id: IUpdateCriteria<T>, entity: QueryDeepPartialEntity<T>, ...options: any[]): Promise<UpdateResult | T>;
+	update(id: IUpdateCriteria<T>, entity: QueryDeepPartialEntity<T>, ...options: any[]): Promise<UpdateResult | T>;
 	// delete(id: IDeleteCriteria<T>, ...options: any[]): Promise<DeleteResult>;
 	// softDelete(id: IDeleteCriteria<T>, ...options: any[]): Promise<UpdateResult | T>;
 	softRemove(id: string, ...options: any[]): Promise<T>;
@@ -46,3 +47,6 @@ export type IFindWhereOptions<T> = FindOptionsWhere<T>
 
 export type IPartialEntity<T> = DeepPartial<T> 
 
+export type IUpdateCriteria<T> = string | number | FindOptionsWhere<T>
+
+export type IDeleteCriteria<T> = string | number | FindOptionsWhere<T>

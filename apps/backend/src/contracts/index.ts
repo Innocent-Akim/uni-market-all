@@ -19,4 +19,5 @@ export * from './sheet-store';
 export * from './stock-sheet';
 export * from './payment.model';
 export * from './operation.model';
-export * from './car.model'
+export * from './car.model';
+export * from './core.model'
