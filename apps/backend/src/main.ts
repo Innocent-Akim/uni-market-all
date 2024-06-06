@@ -14,5 +14,5 @@ import { devConfig } from './databases'
 
 
  bootstrap(devConfig).catch(()=>{
-    console.log("==========*************==========>",devConfig);
+    console.log("==========*************==========> ",devConfig);
  }).catch(()=>{})
