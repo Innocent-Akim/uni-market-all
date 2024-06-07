@@ -189,7 +189,7 @@ export abstract class CrudController<T extends IBaseEntity> {
 	@Delete(':id')
 	async delete(
 		@Param('id') id: string,
-		...options: any[]
+		...options: T[]
 	): Promise<any> {
 		return this.crudService.delete(id);
 	}

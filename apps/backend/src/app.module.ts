@@ -7,11 +7,13 @@ import { ConfigModule } from '@nestjs/config';
 import config from './config/config';
 import { DatabaseModule } from './databases/database.module';
 import { CompanyModule } from './modules/company/company.module';
+import { CarModule } from './modules/car/car.module';
 
 @Module({
   imports: [
     DatabaseModule,
     CompanyModule,
+    CarModule,
     TypeOrmModule.forRootAsync({
       imports:[
         ConfigModule.forRoot({

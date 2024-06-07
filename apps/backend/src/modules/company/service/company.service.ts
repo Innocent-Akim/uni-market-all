@@ -13,8 +13,7 @@ export  class CompanyService extends CrudService<CompanyEntity> {
     ) { super(typeOrmCompanyRepository) }
 
     async saveCompany(company: ICompany): Promise<CompanyEntity> {
-        console.log(company)
-		let res = await this.create(<any>company);
+		let res = await this.create(<ICompany>company);
 		return await this.findOneByIdString(res.id);
 	}
 }

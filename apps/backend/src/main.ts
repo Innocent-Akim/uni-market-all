@@ -9,8 +9,8 @@ import * as dotenv from 'dotenv';
 dotenv.config({ path: envPaths });
 
 
-import {bootstrap} from './bootstrap'
-import { devConfig } from './databases'
+import {bootstrap} from '@uni/bootstrap'
+import { devConfig } from '@uni/databases'
 
 
   bootstrap(devConfig).catch(()=>{

@@ -30,7 +30,7 @@ switch (dbType) {
             username: process.env.DB_USER || 'root',
             password: process.env.DB_PASS || 'root',
             connectorPackage: 'mysql2',
-            logging: getLoggingOptions(process.env.DB_LOGGING as any), // by default set to error only
+            logging: getLoggingOptions(process.env.DB_LOGGING), // by default set to error only
             logger: 'advanced-console',
             maxQueryExecutionTime: dbSlowQueryLoggingTimeout,
             synchronize: process.env.DB_SYNCHRONIZE === 'true', // We are using migrations, synchronize should be set to false.
@@ -54,10 +54,10 @@ switch (dbType) {
             database: process.env.DB_NAME || 'postgres',
             username: process.env.DB_USER || 'postgres',
             password: process.env.DB_PASS || 'root',
-            logging: true, // by default set to error only
+            logging: getLoggingOptions(process.env.DB_LOGGING), // by default set to error only
             logger: 'advanced-console',
             maxQueryExecutionTime: dbSlowQueryLoggingTimeout,
-            synchronize: process.env.DB_SYNCHRONIZE !== 'true', // We are using migrations, synchronize should be set to false.
+            synchronize: process.env.DB_SYNCHRONIZE == 'true', // We are using migrations, synchronize should be set to false.
             uuidExtension: 'pgcrypto',
             entities: ['dist/**/*.entity{.ts,.js}'],
             migrations: ['dist/databases/migrations/*{.ts,.js}'],
@@ -75,7 +75,6 @@ switch (dbType) {
 
 
 }
-
 /**
  * TypeORM DB connection configuration.
  */
