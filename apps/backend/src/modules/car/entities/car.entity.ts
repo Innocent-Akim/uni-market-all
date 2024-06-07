@@ -1,9 +1,10 @@
 import { ICar, ICompany } from "@uni/contracts";
+import { IBaseEntity } from "@uni/entities";
 import { CompanyEntity } from "@uni/modules/company/entities/company.entity";
-import { Column, CreateDateColumn, DeleteDateColumn, Entity, ManyToOne, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
+import { Column, Entity, ManyToOne, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
 
 @Entity({name:'cars'})
-export class CarEntity implements ICar{
+export class CarEntity extends IBaseEntity implements ICar{
     @PrimaryGeneratedColumn('uuid')
     id?: string;
 
@@ -18,21 +19,6 @@ export class CarEntity implements ICar{
 
     @Column()
     color: string;
-
-    @Column()
-    isActive?: boolean;
-
-    @Column()
-    isArchived?: boolean;
-
-    @CreateDateColumn()
-    createAt?: Date;
-
-    @UpdateDateColumn()
-    updateAt?: Date;
-
-    @DeleteDateColumn()
-    deleteAt?: Date;
 
     @ManyToOne(()=>CompanyEntity,(company)=>company.car)
     company?: ICompany;

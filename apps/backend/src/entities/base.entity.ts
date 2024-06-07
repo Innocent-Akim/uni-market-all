@@ -30,12 +30,6 @@ export abstract class Model {
  * All entities that extend this class will have soft-delete capability.
  */
 export abstract class SoftDeletableBaseEntity extends Model {
-	// Soft Delete
-	@ApiPropertyOptional({
-		type: 'string',
-		format: 'date-time',
-		example: '2018-11-21T06:20:32.232Z'
-	})
 	@IsOptional()
 	@IsDateString()
 	// Soft delete column that records the date/time when the entity was soft-deleted
@@ -50,33 +44,17 @@ export abstract class SoftDeletableBaseEntity extends Model {
  */
 export abstract class IBaseEntity extends SoftDeletableBaseEntity implements IBaseEntityModel {
 	// Primary key of UUID type
-	@ApiPropertyOptional({ type: () => String })
 	@PrimaryGeneratedColumn('uuid')
 	id?: string;
 
-	// Date when the record was created
-	@ApiPropertyOptional({
-		type: 'string',
-		format: 'date-time',
-		example: '2018-11-21T06:20:32.232Z'
-	})
 	@CreateDateColumn() // TypeORM decorator for creation date
 	createdAt?: Date;
 
-	// Date when the record was last updated
-	@ApiPropertyOptional({
-		type: 'string',
-		format: 'date-time',
-		example: '2018-11-21T06:20:32.232Z'
-	})
+
 	@UpdateDateColumn() // TypeORM decorator for update date
 	updateAt?: Date;
 
-	// Indicates if record is active now
-	@ApiPropertyOptional({
-		type: Boolean,
-		default: true
-	})
+
 	@IsOptional() // Field can be optional
 	@IsBoolean() // Should be a boolean type
 	@Column({ nullable: true, default: true }) // TypeORM

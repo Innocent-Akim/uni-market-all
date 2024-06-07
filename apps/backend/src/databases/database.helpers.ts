@@ -77,3 +77,12 @@ export const getLoggingOptions = (dbLogging: string): false | 'all' | ['query', 
 	}
 	return loggingOptions;
 };
+
+
+
+export const prepareSQLQuery = (queryStr: string): string => {
+	if (isMySQL()) {
+		return queryStr.replace(/"/g, '`');
+	}
+	return queryStr;
+}
