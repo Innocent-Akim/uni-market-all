@@ -9,7 +9,6 @@ import { ApplicationPluginConfig } from '@uni/databases';
 export async function bootstrap(
     pluginConfig?: Partial<ApplicationPluginConfig>,
   ): Promise<INestApplication> {
-
     const { BootstrapModule } = await import('./bootstrap.module');
     const app = await NestFactory.create<NestExpressApplication>(
       BootstrapModule,

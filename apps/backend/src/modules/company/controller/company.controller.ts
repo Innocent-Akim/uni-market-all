@@ -11,7 +11,7 @@ export class CompanyController extends CrudController<CompanyEntity> {
     }
     @Post()
     async create(@Body() entity:any):Promise<CompanyEntity>  {
-        return await this.commandBus.execute(this.companyService.saveProduct(entity));
+        return await this.companyService.saveCompany(entity);
 
      }
 }

@@ -10,6 +10,7 @@ const dbConnectionTimeout = process.env.DB_CONNECTION_TIMEOUT ? parseInt(process
 const idleTimeoutMillis = process.env.DB_IDLE_TIMEOUT ? parseInt(process.env.DB_IDLE_TIMEOUT) : 10000; // 10 seconds
 const dbSlowQueryLoggingTimeout = process.env.DB_SLOW_QUERY_LOGGING_TIMEOUT ? parseInt(process.env.DB_SLOW_QUERY_LOGGING_TIMEOUT) : 10000; // 10 seconds default
 const dbSslMode = process.env.DB_SSL_MODE === 'true';
+
 console.log('DB ORM Pool Size: ' + dbPoolSize);
 console.log('DB Connection Timeout: ' + dbConnectionTimeout);
 console.log('DB Idle Timeout: ' + idleTimeoutMillis);
@@ -17,6 +18,7 @@ console.log('DB Slow Query Logging Timeout: ' + dbSlowQueryLoggingTimeout);
 console.log('DB SSL Mode: ' + process.env.DB_SSL_MODE);
 console.log('DB SSL MODE ENABLE: ' + dbSslMode);
 console.log('DATABASE NAME: ' + process.env.DB_NAME);
+
 switch (dbType) {
     case DatabaseTypeEnum.mysql:
         const typeOrmMySqlOptions: MysqlConnectionOptions = {
