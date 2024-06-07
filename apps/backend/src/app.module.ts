@@ -11,6 +11,7 @@ import { CompanyModule } from './modules/company/company.module';
 @Module({
   imports: [
     DatabaseModule,
+    CompanyModule,
     TypeOrmModule.forRootAsync({
       imports:[
         ConfigModule.forRoot({
@@ -24,7 +25,6 @@ import { CompanyModule } from './modules/company/company.module';
         return dbConnectionOptions;
       }
     }),
-    CompanyModule
   ],
   controllers: [AppController],
   providers: [AppService],

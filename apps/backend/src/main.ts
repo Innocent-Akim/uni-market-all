@@ -13,6 +13,6 @@ import {bootstrap} from './bootstrap'
 import { devConfig } from './databases'
 
 
- bootstrap(devConfig).catch(()=>{
-    console.log("==========*************==========> ",devConfig);
+  bootstrap(devConfig).catch(()=>{
+   console.log("server start:dev...")
  }).catch(()=>{})

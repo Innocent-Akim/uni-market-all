@@ -9,7 +9,7 @@ import { SupplierEntity } from "@uni/modules/supplier/entities/supplier.entity";
 import { Column, CreateDateColumn, DeleteDateColumn, Entity, JoinColumn, ManyToOne, OneToMany, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
 @Entity({name:'companys'})
 export class CompanyEntity implements ICompany {
-    @PrimaryGeneratedColumn()
+    @PrimaryGeneratedColumn("uuid")
     id?: string;
     @Column()
     name: string;

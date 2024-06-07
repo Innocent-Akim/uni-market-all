@@ -15,7 +15,7 @@ export  class CompanyService extends CrudService<CompanyEntity> {
     async saveProduct(productRequest: ICompany): Promise<CompanyEntity> {
 		let res = await this.create(<any>productRequest);
 		return await this.findOneByIdString(res.id, {
-			relations: ['variants', 'optionGroups', 'productType', 'productCategory', 'tags', 'gallery']
+			relations: ["categories"]
 		});
 	}
 }
