@@ -1,11 +1,11 @@
 import { Injectable } from "@nestjs/common";
 import { InjectRepository } from "@nestjs/typeorm";
 import { Repository } from "typeorm";
-import { CompanyEntity } from "../entities/company.entity";
+import { CustomEntity } from "../entities/custom.entity";
 
 @Injectable()
-export class TypeOrmCompanyRepository extends Repository<CompanyEntity> {
-    constructor(@InjectRepository(CompanyEntity) readonly repository: Repository<CompanyEntity>) {
+export class TypeOrmCustomRepository extends Repository<CustomEntity> {
+    constructor(@InjectRepository(CustomEntity) readonly repository: Repository<CustomEntity>) {
         super(repository.target, repository.manager, repository.queryRunner);
     }
 }

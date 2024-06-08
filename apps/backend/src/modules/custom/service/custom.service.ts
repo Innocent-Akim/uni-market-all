@@ -15,7 +15,7 @@ export class CustomService extends CrudService<CustomEntity> {
     }
 
 
-    async create(custom: ICustom): Promise<CustomEntity> {
+    async createCustom(custom: ICustom): Promise<CustomEntity> {
         return await this.create(<ICustom>(custom));
     }
 }

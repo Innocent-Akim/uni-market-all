@@ -15,6 +15,6 @@ export class CustomController extends CrudController<CustomEntity> {
 
     @Post()
     async create(@Body() entity:ICustom):Promise<CustomEntity>{
-        return await this.create(entity);
+        return await this.custom.createCustom(entity);
     }
 }
