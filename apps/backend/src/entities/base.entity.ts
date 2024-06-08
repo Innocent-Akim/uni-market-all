@@ -47,7 +47,9 @@ export abstract class IBaseEntity extends SoftDeletableBaseEntity implements IBa
 	@PrimaryGeneratedColumn('uuid')
 	id?: string;
 
-	@CreateDateColumn() // TypeORM decorator for creation date
+	@CreateDateColumn({
+		update:false
+	}) // TypeORM decorator for creation date
 	createdAt?: Date;
 
 
