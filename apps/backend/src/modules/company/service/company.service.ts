@@ -9,13 +9,11 @@ import { ICompany } from '@uni/contracts';
 export  class CompanyService extends CrudService<CompanyEntity> {
     constructor(
         @InjectRepository(CompanyEntity)
-        typeOrmProductRepository: TypeOrmCompanyRepository,
-    ) { super(typeOrmProductRepository) }
+        typeOrmCompanyRepository: TypeOrmCompanyRepository,
+    ) { super(typeOrmCompanyRepository) }
 
-    async saveProduct(productRequest: ICompany): Promise<CompanyEntity> {
-		let res = await this.create(<any>productRequest);
-		return await this.findOneByIdString(res.id, {
-			relations: ['variants', 'optionGroups', 'productType', 'productCategory', 'tags', 'gallery']
-		});
+    async saveCompany(company: ICompany): Promise<CompanyEntity> {
+		let res = await this.create(<ICompany>company);
+		return await this.findOneByIdString(res.id);
 	}
 }

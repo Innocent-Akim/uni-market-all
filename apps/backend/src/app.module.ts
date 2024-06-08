@@ -1,16 +1,20 @@
 import { Module } from '@nestjs/common';
-import { AppController } from './app.controller';
-import { AppService } from './app.service';
+
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { DatabaseService } from './databases';
 import { ConfigModule } from '@nestjs/config';
 import config from './config/config';
 import { DatabaseModule } from './databases/database.module';
 import { CompanyModule } from './modules/company/company.module';
+import { CarModule } from './modules/car/car.module';
+import { CustomModule } from './modules/custom/custom.module';
 
 @Module({
   imports: [
     DatabaseModule,
+    CompanyModule,
+    CarModule,
+    CustomModule,
     TypeOrmModule.forRootAsync({
       imports:[
         ConfigModule.forRoot({
@@ -24,10 +28,9 @@ import { CompanyModule } from './modules/company/company.module';
         return dbConnectionOptions;
       }
     }),
-    CompanyModule
   ],
-  controllers: [AppController],
-  providers: [AppService],
+  // controllers: [],
+  // providers: [],
   exports:[TypeOrmModule]
 })
 export class AppModule {}

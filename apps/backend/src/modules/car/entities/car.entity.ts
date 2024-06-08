@@ -5,9 +5,6 @@ import { Column, Entity, ManyToOne, PrimaryGeneratedColumn, UpdateDateColumn } f
 
 @Entity({name:'cars'})
 export class CarEntity extends IBaseEntity implements ICar{
-    @PrimaryGeneratedColumn('uuid')
-    id?: string;
-
     @Column()
     designation: string;
 

@@ -9,7 +9,6 @@ import { ApplicationPluginConfig } from '@uni/databases';
 export async function bootstrap(
     pluginConfig?: Partial<ApplicationPluginConfig>,
   ): Promise<INestApplication> {
-
     const { BootstrapModule } = await import('./bootstrap.module');
     const app = await NestFactory.create<NestExpressApplication>(
       BootstrapModule,
@@ -28,7 +27,7 @@ export async function bootstrap(
       allowedHeaders:
         'Authorization, Language, Tenant-Id, Organization-Id, X-Requested-With, X-Auth-Token, X-HTTP-Method-Override, Content-Type, Content-Language, Accept, Accept-Language, Observe',
     });
-    app.setGlobalPrefix('api');
+    app.setGlobalPrefix('api/v2/');
     await app.listen(4000, () => {});
     return app;
 }

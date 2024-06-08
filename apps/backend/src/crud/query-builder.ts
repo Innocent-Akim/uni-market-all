@@ -1,5 +1,5 @@
 import { Brackets, FindOperator, ObjectLiteral, SelectQueryBuilder, WhereExpressionBuilder } from "typeorm";
-import { prepareSQLQuery as p } from '../databases';
+import { prepareSQLQuery as p } from '@uni/databases';
 
 export const filterQuery = <T>(
     qb: SelectQueryBuilder<T>,
