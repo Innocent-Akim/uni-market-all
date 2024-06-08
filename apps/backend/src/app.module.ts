@@ -8,12 +8,14 @@ import config from './config/config';
 import { DatabaseModule } from './databases/database.module';
 import { CompanyModule } from './modules/company/company.module';
 import { CarModule } from './modules/car/car.module';
+import { CustomModule } from './modules/custom/custom.module';
 
 @Module({
   imports: [
     DatabaseModule,
     CompanyModule,
     CarModule,
+    CustomModule,
     TypeOrmModule.forRootAsync({
       imports:[
         ConfigModule.forRoot({

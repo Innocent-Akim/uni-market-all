@@ -300,12 +300,11 @@ export abstract class CrudService<T extends IBaseEntity> implements ICrudService
     }
 
     /**
-     * Creates a new entity or updates an existing one based on the provided entity data.
      *
-     * @param entity The partial entity data for creation or update.
-     * @param createOptions Options for the creation of the entity in MikroORM.
-     * @param upsertOptions Options for the upsert operation in MikroORM.
-     * @returns The created or updated entity.
+     *
+     * @param {IPartialEntity<T>} partialEntity
+     * @return {*}  {Promise<T>}
+     * @memberof CrudService
      */
     public async create(
         partialEntity: IPartialEntity<T>,
