@@ -20,4 +20,8 @@ export * from './stock-sheet';
 export * from './payment.model';
 export * from './operation.model';
 export * from './car.model';
-export * from './core.model'
+export * from './core.model';
+export * from "./user.model";
+export * from './account.model';
+export * from './session.model';
+export * from './verification-token.model'

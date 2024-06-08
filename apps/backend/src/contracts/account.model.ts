@@ -1,4 +1,4 @@
-import { IBaseEntityModel } from "./base-entity.model";
+import { IBaseEntityModel } from ".";
 /**
  *
  *
