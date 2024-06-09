@@ -7,9 +7,10 @@ import { CategoriesEntity } from "@uni/modules/categories/entities/categorie.ent
 import { ICategorie } from "@uni/modules/categories/interfaces/icategories";
 import {  CustomEntity } from "@uni/modules/custom/entities/custom.entity";
 import { SupplierEntity } from "@uni/modules/supplier/entities/supplier.entity";
-import {  Column, Entity, JoinColumn, OneToMany } from "typeorm";
+import {  Column,Entity, JoinColumn,  OneToMany } from "typeorm";
 @Entity({name:'companys'})
-export class CompanyEntity extends IBaseEntity implements ICompany {
+export class CompanyEntity extends IBaseEntity  implements ICompany {
+
     @Column()
     name: string;
 
@@ -33,6 +34,7 @@ export class CompanyEntity extends IBaseEntity implements ICompany {
 
     @Column()
     imageUrl?: string;
+   
 
     @OneToMany(()=>CompanyEntity,(company)=>company.succersale)
     succersale?: ISuccursal[];
