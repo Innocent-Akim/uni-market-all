@@ -9,6 +9,7 @@ export class CompanyDTO {
 
     @IsOptional()
     @IsBoolean()
+    @Type(()=>Boolean)
     isDefault: boolean;
 
     @IsOptional()
