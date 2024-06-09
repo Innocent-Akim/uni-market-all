@@ -27,6 +27,7 @@ export async function bootstrap(
       allowedHeaders:
         'Authorization, Language, Tenant-Id, Organization-Id, X-Requested-With, X-Auth-Token, X-HTTP-Method-Override, Content-Type, Content-Language, Accept, Accept-Language, Observe',
     });
+    
     app.setGlobalPrefix('api/v2/');
     await app.listen(4000, () => {});
     return app;
