@@ -12,6 +12,7 @@ import { SuccursaleModule } from './modules/succursale/succursale.module';
 import { DepositModule } from './modules/deposit/deposit.module';
 import { CategoriesModule } from './modules/categories/categories.module';
 import { ProductsModule } from './modules/products/products.module';
+import { OperationModule } from './modules/operation/operation.module';
 
 @Module({
   imports: [
@@ -22,23 +23,24 @@ import { ProductsModule } from './modules/products/products.module';
     DepositModule,
     CategoriesModule,
     ProductsModule,
+    OperationModule,
     CustomModule,
     TypeOrmModule.forRootAsync({
-      imports:[
+      imports: [
         ConfigModule.forRoot({
           isGlobal: true,
           load: [config],
         }),
       ],
       inject: [DatabaseService],
-      useFactory:async(databaseService:DatabaseService)=>{
-        const{dbConnectionOptions}=databaseService
+      useFactory: async (databaseService: DatabaseService) => {
+        const { dbConnectionOptions } = databaseService
         return dbConnectionOptions;
       }
     }),
   ],
   // controllers: [],
   // providers: [],
-  exports:[TypeOrmModule]
+  exports: [TypeOrmModule]
 })
-export class AppModule {}
+export class AppModule { }
