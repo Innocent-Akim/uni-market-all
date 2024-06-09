@@ -31,7 +31,7 @@ export class SuccursaleDto{
     @IsString()
     overview: string;
 
-    
+
     @IsString()
     timeZone?: string;
 
