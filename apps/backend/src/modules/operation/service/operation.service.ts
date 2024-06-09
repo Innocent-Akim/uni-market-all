@@ -9,4 +9,5 @@ export class OperationService extends CrudService<OperationEntity> {
     constructor( @InjectRepository(OperationEntity) typeOrmOperationRepository:TypeOrmOperationRepository){
         super(typeOrmOperationRepository)
     }
+    
 }
