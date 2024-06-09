@@ -3,11 +3,11 @@ import { IsBoolean, IsNotEmpty, IsOptional, IsString, IsInt, IsDate } from 'clas
 
 export class CompanyDTO {
 
-    @IsNotEmpty({'message':"Message"})
+    @IsNotEmpty({message:''})
     @IsString()
     name: string;
 
-    @IsNotEmpty()
+    @IsOptional()
     @IsBoolean()
     isDefault: boolean;
 
