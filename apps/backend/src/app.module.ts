@@ -11,6 +11,7 @@ import { CustomModule } from './modules/custom/custom.module';
 import { SuccursaleModule } from './modules/succursale/succursale.module';
 import { DepositModule } from './modules/deposit/deposit.module';
 import { CategoriesModule } from './modules/categories/categories.module';
+import { ProductsModule } from './modules/products/products.module';
 
 @Module({
   imports: [
@@ -20,6 +21,7 @@ import { CategoriesModule } from './modules/categories/categories.module';
     SuccursaleModule,
     DepositModule,
     CategoriesModule,
+    ProductsModule,
     CustomModule,
     TypeOrmModule.forRootAsync({
       imports:[
