@@ -5,7 +5,6 @@ import { StoreEntity } from '../entities/store.entity';
 
 @Controller()
 export class StoreController extends CrudController<StoreEntity> {
-
     constructor(private storeService: StoreService) {
         super(storeService)
     }

@@ -14,6 +14,7 @@ import { CategoriesModule } from './modules/categories/categories.module';
 import { ProductsModule } from './modules/products/products.module';
 import { OperationModule } from './modules/operation/operation.module';
 import { SupplierModule } from './modules/supplier/supplier.module';
+import { StoreModule } from './modules/store/store.module';
 
 @Module({
   imports: [
@@ -40,6 +41,7 @@ import { SupplierModule } from './modules/supplier/supplier.module';
     ProductsModule,
     OperationModule,
     CustomModule,
+    StoreModule,
   ],
   // controllers: [],
   // providers: [],
