@@ -13,18 +13,10 @@ import { DepositModule } from './modules/deposit/deposit.module';
 import { CategoriesModule } from './modules/categories/categories.module';
 import { ProductsModule } from './modules/products/products.module';
 import { OperationModule } from './modules/operation/operation.module';
+import { SupplierModule } from './modules/supplier/supplier.module';
 
 @Module({
   imports: [
-    DatabaseModule,
-    CompanyModule,
-    CarModule,
-    SuccursaleModule,
-    DepositModule,
-    CategoriesModule,
-    ProductsModule,
-    OperationModule,
-    CustomModule,
     TypeOrmModule.forRootAsync({
       imports: [
         ConfigModule.forRoot({
@@ -38,6 +30,16 @@ import { OperationModule } from './modules/operation/operation.module';
         return dbConnectionOptions;
       }
     }),
+    DatabaseModule,
+    CompanyModule,
+    CarModule,
+    SupplierModule,
+    SuccursaleModule,
+    DepositModule,
+    CategoriesModule,
+    ProductsModule,
+    OperationModule,
+    CustomModule,
   ],
   // controllers: [],
   // providers: [],
