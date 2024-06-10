@@ -11,32 +11,46 @@ import { CustomModule } from './modules/custom/custom.module';
 import { SuccursaleModule } from './modules/succursale/succursale.module';
 import { DepositModule } from './modules/deposit/deposit.module';
 import { CategoriesModule } from './modules/categories/categories.module';
+import { ProductsModule } from './modules/products/products.module';
+import { OperationModule } from './modules/operation/operation.module';
+import { SupplierModule } from './modules/supplier/supplier.module';
+import { StoreModule } from './modules/store/store.module';
+import { SheetDepositModule } from './modules/sheet.deposit/sheet.deposit.module';
+import { SheetStoreModule } from './modules/sheet.store/sheet.store.module';
+import { StoreStockModule } from './modules/store.stock/store.stock.module';
 
 @Module({
   imports: [
-    DatabaseModule,
-    CompanyModule,
-    CarModule,
-    SuccursaleModule,
-    DepositModule,
-    CategoriesModule,
-    CustomModule,
     TypeOrmModule.forRootAsync({
-      imports:[
+      imports: [
         ConfigModule.forRoot({
           isGlobal: true,
           load: [config],
         }),
       ],
       inject: [DatabaseService],
-      useFactory:async(databaseService:DatabaseService)=>{
-        const{dbConnectionOptions}=databaseService
+      useFactory: async (databaseService: DatabaseService) => {
+        const { dbConnectionOptions } = databaseService
         return dbConnectionOptions;
       }
     }),
+    DatabaseModule,
+    CompanyModule,
+    CarModule,
+    SupplierModule,
+    SuccursaleModule,
+    DepositModule,
+    CategoriesModule,
+    ProductsModule,
+    OperationModule,
+    CustomModule,
+    StoreModule,
+    SheetDepositModule,
+    SheetStoreModule,
+    StoreStockModule,
   ],
   // controllers: [],
   // providers: [],
-  exports:[TypeOrmModule]
+  exports: [TypeOrmModule]
 })
-export class AppModule {}
+export class AppModule { }
