@@ -16,6 +16,7 @@ import { OperationModule } from './modules/operation/operation.module';
 import { SupplierModule } from './modules/supplier/supplier.module';
 import { StoreModule } from './modules/store/store.module';
 import { SheetDepositModule } from './modules/sheet.deposit/sheet.deposit.module';
+import { SheetStoreModule } from './modules/sheet.store/sheet.store.module';
 
 @Module({
   imports: [
@@ -43,7 +44,8 @@ import { SheetDepositModule } from './modules/sheet.deposit/sheet.deposit.module
     OperationModule,
     CustomModule,
     StoreModule,
-    SheetDepositModule
+    SheetDepositModule,
+    SheetStoreModule
   ],
   // controllers: [],
   // providers: [],

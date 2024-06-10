@@ -6,7 +6,7 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { SheetDepositEntity } from './entities/sheet.deposit.entity';
 
 @Module({
-  imports:[RouterModule.register([{path:'/sheet.deposit',module:SheetDepositModule}]),
+  imports:[RouterModule.register([{path:'/sheet-deposit',module:SheetDepositModule}]),
   TypeOrmModule.forFeature([SheetDepositEntity])
 ],
 
