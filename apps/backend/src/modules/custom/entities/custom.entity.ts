@@ -1,14 +1,12 @@
 import { ICompany, ICustom, IInvoiceHeader } from "@uni/contracts";
+import { IBaseEntity } from "@uni/entities";
 import { CompanyEntity } from "@uni/modules/company/entities/company.entity";
 import { InvoiceHeaderEntity } from "@uni/modules/invoice.header/entities/invoice.header.entity";
 import { IsOptional } from "class-validator";
-import { Column, CreateDateColumn, DeleteDateColumn, Entity, ManyToOne, OneToMany, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
+import { Column, Entity, ManyToOne, OneToMany } from "typeorm";
 
 @Entity({ name: 'customs' })
-export class CustomEntity implements ICustom {
-    @PrimaryGeneratedColumn('uuid')
-    id?: string;
-
+export class CustomEntity extends IBaseEntity implements ICustom {
     @Column()
     fullname: string;
 
@@ -23,22 +21,7 @@ export class CustomEntity implements ICustom {
     adresse?: string;
 
     @Column()
-    isActive?: boolean;
-
-    @Column()
-    isArchived?: boolean;
-
-    @Column()
     type_custom: string;
-
-    @CreateDateColumn()
-    createAt?: Date;
-
-    @UpdateDateColumn()
-    updateAt?: Date;
-
-    @DeleteDateColumn()
-    deleteAt?: Date;
 
     @ManyToOne(() => CompanyEntity, (company) => company.custom, {
         onDelete: 'CASCADE',
