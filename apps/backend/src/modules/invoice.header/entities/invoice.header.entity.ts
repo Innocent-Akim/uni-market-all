@@ -1,4 +1,5 @@
 import { ICustom, IDeposit, IInvoiceDetails, IInvoiceHeader, IPayment } from "@uni/contracts";
+import { IBaseEntity } from "@uni/entities";
 import { CustomEntity } from "@uni/modules/custom/entities/custom.entity";
 import { DepositEntity } from "@uni/modules/deposit/entities/deposit.entity";
 import { InvoiceDetailsEntity } from "@uni/modules/invoice.details/entities/invoice.details.entity";
@@ -6,34 +7,18 @@ import { PaymentEntity } from "@uni/modules/payment/entities/payment.entity";
 import { Column, CreateDateColumn, DeleteDateColumn, Entity, ManyToOne, OneToMany, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
 
 @Entity({name:'invoice_header'})
-export class InvoiceHeaderEntity implements IInvoiceHeader{
-    @PrimaryGeneratedColumn('uuid')
-    id?: string;
+export class InvoiceHeaderEntity extends IBaseEntity implements IInvoiceHeader{
     @Column()
     typeInvoice: string;
-    @Column()
 
+    @Column()
     dateInvoice?: Date;
-    @Column()
 
+    @Column()
     check?: boolean;
-    @Column()
 
+    @Column()
     sales_types: string;
-    @Column()
-
-    isActive?: boolean;
-    @Column()
-
-    isArchived?: boolean;
-    @CreateDateColumn()
-    createAt?: Date;
-    
-    @UpdateDateColumn()
-    updateAt?: Date;
-
-    @DeleteDateColumn()
-    deleteAt?: Date;
 
     @ManyToOne(()=>CustomEntity,(custom)=>custom.invoice)
     custom?: ICustom;
