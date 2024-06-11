@@ -2,16 +2,14 @@ import { ISheetStore } from "@uni/contracts";
 import { IDeposit } from "@uni/contracts/deposit.model";
 import { IStore } from "@uni/contracts/store.model";
 import { IStoreStocks } from "@uni/contracts/store.stock";
+import { IBaseEntity } from "@uni/entities";
 import { DepositEntity } from "@uni/modules/deposit/entities/deposit.entity";
 import { SheetStoreEntity } from "@uni/modules/sheet.store/entities/sheet.store.entity";
 import { StoreStockEntity } from "@uni/modules/store.stock/entities/store.stock.entity";
-import { Column, CreateDateColumn, DeleteDateColumn, Entity, ManyToOne, OneToMany, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
+import { Column, Entity, ManyToOne, OneToMany } from "typeorm";
 
 @Entity({ name: 'stores' })
-export class StoreEntity implements IStore {
-    @PrimaryGeneratedColumn('uuid')
-    id?: string;
-
+export class StoreEntity extends IBaseEntity implements IStore {
     @Column()
     designation: string;
 
@@ -23,21 +21,6 @@ export class StoreEntity implements IStore {
 
     @Column()
     adresse: string;
-
-    @Column()
-    isActive?: boolean;
-
-    @Column()
-    isArchived?: boolean;
-
-    @CreateDateColumn()
-    createAt?: Date;
-
-    @UpdateDateColumn()
-    updateAt?: Date;
-
-    @DeleteDateColumn()
-    deleteAt?: Date;
 
     @ManyToOne(() => DepositEntity, (deposit) => deposit.store)
     deposit?: IDeposit;
