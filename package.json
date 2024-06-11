@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev:all": "pnpm run --parallel dev",
+    "dev:all": "pnpm run --parallel start:dev",
     "build:api": "pnpm --filter api build",
     "build:app": "pnpm --filter web build",
     "start:api": "pnpm --filter  start:dev",
