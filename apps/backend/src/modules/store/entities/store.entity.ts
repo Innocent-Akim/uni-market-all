@@ -6,7 +6,7 @@ import { IBaseEntity } from "@uni/entities";
 import { DepositEntity } from "@uni/modules/deposit/entities/deposit.entity";
 import { SheetStoreEntity } from "@uni/modules/sheet.store/entities/sheet.store.entity";
 import { StoreStockEntity } from "@uni/modules/store.stock/entities/store.stock.entity";
-import { Column, CreateDateColumn, DeleteDateColumn, Entity, ManyToOne, OneToMany, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
+import { Column, Entity, ManyToOne, OneToMany } from "typeorm";
 
 @Entity({ name: 'stores' })
 export class StoreEntity extends IBaseEntity implements IStore {
