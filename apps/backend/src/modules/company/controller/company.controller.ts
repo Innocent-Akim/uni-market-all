@@ -12,7 +12,6 @@ export class CompanyController extends CrudController<CompanyEntity> {
     }
 
     @Post()
-    @UsePipes(new ValidationPipe({ transform: true }))
     async create(@Body() entity: CompanyDTO): Promise<CompanyEntity> {
         return await this.companyService.saveCompany(entity);
     }
