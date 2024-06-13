@@ -15,7 +15,7 @@ export class CategoriesService extends CrudService<CategoriesEntity> {
         super(typeOrmCategories)
     }
    
-    async createCategories(body:CategoriesDto):Promise<CategoriesEntity>{
+    async createCategories(body:CategoriesEntity):Promise<CategoriesEntity>{
         let resultat=await this.create(body)
         return await this.findOneByIdString(resultat.id);
 
