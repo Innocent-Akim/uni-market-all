@@ -1,3 +1,4 @@
+import { ICompany } from "@uni/contracts";
 import { IsNotEmpty, IsOptional, IsString } from "class-validator";
 
 export class CustomDto{
@@ -8,7 +9,10 @@ export class CustomDto{
     @IsNotEmpty()
     @IsString()
     phone: string;
-
+    
+    @IsNotEmpty()
+    @IsString()
+    company:ICompany
 
     @IsOptional()
     @IsString()
@@ -16,7 +20,7 @@ export class CustomDto{
 
     @IsOptional()
     @IsString()
-    adresse?: string;
+    adresse: string;
 
     @IsNotEmpty()
     @IsString()

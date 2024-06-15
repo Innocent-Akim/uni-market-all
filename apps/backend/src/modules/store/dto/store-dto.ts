@@ -23,5 +23,5 @@ export class StoreDto{
 
     @IsNotEmpty()
     @IsString()
-    depositId:IDeposit['id']
+    deposit:IDeposit
 }

@@ -1,3 +1,4 @@
+import { ICompany } from "@uni/contracts";
 import { Type } from "class-transformer";
 import { IsEmail, IsNotEmpty, IsOptional, IsPhoneNumber, IsString } from "class-validator";
 
@@ -37,4 +38,8 @@ export class SuccursaleDto{
 
     @IsString()
     status?: string;
+   
+    @IsNotEmpty()
+    @IsString()
+    company:ICompany
 }
