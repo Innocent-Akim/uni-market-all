@@ -15,7 +15,6 @@ export class CompanyService extends CrudService<CompanyEntity> {
     async saveCompany(company: CompanyDTO): Promise<CompanyEntity> {
 try {
     const existed=await this.findOneByOptions({where:{name:company.name}});
-    console.log(existed)
         if(!existed){
             throw new NotFoundException('already')
         }
