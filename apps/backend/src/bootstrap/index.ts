@@ -1,6 +1,6 @@
 
 
-import { INestApplication } from '@nestjs/common';
+import { INestApplication, ValidationPipe } from '@nestjs/common';
 import { NestFactory } from '@nestjs/core';
 import { NestExpressApplication } from '@nestjs/platform-express';
 import { urlencoded } from 'express';
@@ -20,6 +20,7 @@ export async function bootstrap(
     app.use(urlencoded({ extended: true, limit: '50mb' }));
     app.set('trust proxy', true);
     app.enableShutdownHooks();
+    app.useGlobalPipes(new ValidationPipe());
     app.enableCors({
       origin: '*',
       methods: 'GET,HEAD,PUT,PATCH,POST,DELETE,OPTIONS',
