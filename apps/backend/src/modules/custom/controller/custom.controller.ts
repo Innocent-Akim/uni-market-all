@@ -1,20 +1,15 @@
 import { Body, Controller, Post } from '@nestjs/common';
-import { CrudController, CrudService } from '@uni/crud';
+import { CrudController } from '@uni/crud';
 import { CustomEntity } from '../entities/custom.entity';
-import { InjectRepository } from '@nestjs/typeorm';
 import { CustomService } from '../service/custom.service';
-import { ICustom } from '@uni/contracts';
+import { CustomDto } from '../dto/custom.dto';
 
 @Controller()
 export class CustomController extends CrudController<CustomEntity> {
-    constructor(
-        private custom: CustomService
-    ) {
-        super(custom)
-    }
+    constructor( private customService: CustomService ) { super(customService) }
 
     @Post()
-    async create(@Body() entity:ICustom):Promise<CustomEntity>{
-        return await this.custom.createCustom(entity);
+    async create(@Body() entity:CustomDto):Promise<CustomEntity>{
+        return await this.customService.createCustom(entity);
     }
 }
