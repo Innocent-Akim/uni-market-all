@@ -27,4 +27,10 @@ try {
 }
   
     }
+
+
+    async find():Promise<any[]>{
+        return await this.typeOrmRepository.find({relations:["categorie"]})
+        
+    }
 }

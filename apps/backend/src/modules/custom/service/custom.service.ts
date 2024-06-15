@@ -4,6 +4,7 @@ import { CustomEntity } from '../entities/custom.entity';
 import { InjectRepository } from '@nestjs/typeorm';
 import { TypeOrmCustomRepository } from '../repository/type-orm-Custom';
 import { ICustom } from '@uni/contracts';
+import { CustomDto } from '../dto/custom.dto';
 
 @Injectable()
 export class CustomService extends CrudService<CustomEntity> {
@@ -15,7 +16,7 @@ export class CustomService extends CrudService<CustomEntity> {
     }
 
 
-    async createCustom(custom: ICustom): Promise<CustomEntity> {
-        return await this.create(<ICustom>(custom));
+    async createCustom(custom: CustomDto): Promise<CustomEntity> {
+        return await this.create(<CustomDto>(custom));
     }
 }

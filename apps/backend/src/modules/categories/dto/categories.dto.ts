@@ -1,4 +1,5 @@
 import { ICompany } from "@uni/contracts";
+import { Type } from "class-transformer";
 import { IsBoolean, IsNotEmpty, IsOptional, IsString, IsUUID } from "class-validator";
 
 export class CategoriesDto {
@@ -8,13 +9,15 @@ export class CategoriesDto {
 
     @IsNotEmpty()
     @IsUUID()
-    companyId: string; // Updated to `string` and used @IsUUID
+    company: ICompany; // Updated to `string` and used @IsUUID
 
     @IsOptional()
     @IsBoolean()
-    isActive?: boolean = false; // Optional boolean with default value
+    @Type(()=>Boolean)
+    isActive?: boolean; // Optional boolean with default value
 
     @IsOptional()
     @IsBoolean()
-    isArchived?: boolean = false; // Optional boolean with default value
+    @Type(()=>Boolean)
+    isArchived?: boolean; // Optional boolean with default value
 }
