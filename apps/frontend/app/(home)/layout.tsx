@@ -1,8 +1,7 @@
 
 import type { Metadata } from "next";
-import "./globals.css";
-import SlaveLayout from "@/components/layouts/SlaveLayout";
-
+import "../globals.css";
+import MainAppLayout from "@/components/layouts/MainLayouts";
 
 export const metadata: Metadata = {
   title: 'UNI-MARKET',
@@ -19,7 +18,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body >
-       <SlaveLayout>  {children}</SlaveLayout> 
+       <MainAppLayout>  {children}</MainAppLayout> 
       </body>
     </html>
   );
