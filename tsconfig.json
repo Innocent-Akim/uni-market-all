@@ -12,7 +12,7 @@
     "noFallthroughCasesInSwitch": true,
     "paths": {
       "@uni/*": ["./apps/backend/src/*"],
-      "@web/*": ["./apps/frontend/*"]
+      "@/*": ["./apps/frontend/*"]
     }
   }
 }
