@@ -1,8 +1,8 @@
-import type { Metadata } from "next";
-import { Inter } from "next/font/google";
-import "./globals.css";
 
-const inter = Inter({ subsets: ["latin"] });
+import type { Metadata } from "next";
+import "./globals.css";
+import SlaveLayout from "@/components/layouts/SlaveLayout";
+
 
 export const metadata: Metadata = {
   title: 'UNI-MARKET',
@@ -18,7 +18,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={inter.className}>{children}</body>
+      <body >
+       <SlaveLayout>  {children}</SlaveLayout> 
+      </body>
     </html>
   );
 }
