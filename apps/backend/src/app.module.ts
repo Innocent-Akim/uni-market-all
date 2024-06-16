@@ -20,6 +20,7 @@ import { SheetStoreModule } from './modules/sheet.store/sheet.store.module';
 import { StoreStockModule } from './modules/store.stock/store.stock.module';
 import { DepositStockModule } from './modules/deposit.stock/deposit.stock.module';
 import { SubcategorieModule } from './modules/subcategorie/subcategorie.module';
+import { ImagesModule } from './modules/images/images.module';
 
 @Module({
   imports: [
@@ -51,7 +52,8 @@ import { SubcategorieModule } from './modules/subcategorie/subcategorie.module';
     SheetStoreModule,
     StoreStockModule,
     DepositStockModule,
-    SubcategorieModule
+    SubcategorieModule,
+    ImagesModule
   ],
   // controllers: [],
   // providers: [],
