@@ -12,7 +12,7 @@ function SlaveLayout({ children }: { children: React.ReactNode }) {
             <ReduxProvider>
                 <ThemeProvider
                     attribute="class"
-                    defaultTheme="system"
+                    defaultTheme="light"
                     enableSystem
                     disableTransitionOnChange
                 >

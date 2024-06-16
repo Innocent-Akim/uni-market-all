@@ -1,11 +1,17 @@
-import React from 'react'
+import { FunctionComponent, PropsWithChildren } from 'react';
+import dynamic from 'next/dynamic';
+import PageLoader from '../global/page-loader';
 
-function MainLayouts() {
-  return (
-    <div>
-      
-    </div>
-  )
-}
+const AdminPanel = dynamic(() => import('./admin-panel'), {
+    ssr: false,
+    loading: () => <PageLoader />,
+});
 
-export default MainLayouts
+const MainAppLayout: FunctionComponent<PropsWithChildren> = ({ children }) => {
+    return <AdminPanel>
+
+        {children}
+    </AdminPanel>;
+};
+
+export default MainAppLayout;
