@@ -1,4 +1,4 @@
-import { IInvoiceDetails, ISheetDeposit, ISheetStore, ISupplyDetails } from "@uni/contracts";
+import { IInvoiceDetails, ISheetDeposit, ISheetStore, ISubcategorie, ISupplyDetails } from "@uni/contracts";
 import { IDepositSocks } from "@uni/contracts/deposit.stock";
 import { IProducts } from "@uni/contracts/products.model";
 import { IStoreStocks } from "@uni/contracts/store.stock";
@@ -11,6 +11,7 @@ import { InvoiceDetailsEntity } from "@uni/modules/invoice.details/entities/invo
 import { SheetDepositEntity } from "@uni/modules/sheet.deposit/entities/sheet.deposit.entity";
 import { SheetStoreEntity } from "@uni/modules/sheet.store/entities/sheet.store.entity";
 import { StoreStockEntity } from "@uni/modules/store.stock/entities/store.stock.entity";
+import { SubcategorieEntity } from "@uni/modules/subcategorie/entities/subcategorie.entity";
 import { SuccursaleEntity } from "@uni/modules/succursale/entities/succursale.entity";
 import { SupplyDetailsEntity } from "@uni/modules/supply.details/entities/supply.details.entity";
 
@@ -57,8 +58,10 @@ export class ProductsEntity extends IBaseEntity implements IProducts {
     @OneToMany(() => SupplyDetailsEntity, (details) => details.product)
     supply_details?: ISupplyDetails[];
 
-    @ManyToOne(() => CategoriesEntity, (categorie) => categorie.product)
-    categorie?: ICategorie;
+    @ManyToOne(() => SubcategorieEntity, (categorie) => categorie.product,{
+        nullable:false,
+    })
+    subcategorie?: ISubcategorie;
 
     @OneToMany(() => SheetStoreEntity, (sheetstore) => sheetstore.store)
     sheet_store?: ISheetStore[];
