@@ -1,5 +1,4 @@
-import { ICategorie } from "@uni/modules/categories/interfaces/icategories";
-import { IBaseSuccursale, IDepositSocks, IInvoiceDetails, ISheetDeposit, ISheetStore, IStoreStocks, ISupplyDetails } from ".";
+import { IBaseSuccursale, IDepositSocks, IImages, IInvoiceDetails, ISheetDeposit, ISheetStore, IStoreStocks, ISubcategorie, ISupplyDetails } from ".";
 
 
 export interface IProducts extends IBaseSuccursale {
@@ -12,8 +11,9 @@ export interface IProducts extends IBaseSuccursale {
     stock_deposit?: IDepositSocks[]
     invoice_details?: IInvoiceDetails[]
     supply_details?: ISupplyDetails[]
-    categorie?: ICategorie;
+    subcategorie?: ISubcategorie;
     sheet_store?: ISheetStore[]
     sheet_deposit?: ISheetDeposit[]
+    image:IImages[]
 
 }

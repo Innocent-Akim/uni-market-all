@@ -13,9 +13,6 @@ export class CategoriesEntity extends IBaseEntity implements ICategorie {
     
     @ManyToOne(()=>CompanyEntity,(company)=>company.categorie)
     company?: ICompany;
-    
-    @OneToMany(()=>ProductsEntity,(product)=>product.categorie)
-    product?: IProducts[];
 
     @OneToMany(()=>SubcategorieEntity,(subcategorie)=>subcategorie.categorie)
     subcategorie?: ISubcategorie[];
