@@ -1,4 +1,4 @@
-import { IInvoiceDetails, ISheetDeposit, ISheetStore, ISubcategorie, ISupplyDetails } from "@uni/contracts";
+import { IImages, IInvoiceDetails, ISheetDeposit, ISheetStore, ISubcategorie, ISupplyDetails } from "@uni/contracts";
 import { IDepositSocks } from "@uni/contracts/deposit.stock";
 import { IProducts } from "@uni/contracts/products.model";
 import { IStoreStocks } from "@uni/contracts/store.stock";
@@ -7,6 +7,7 @@ import { IBaseEntity } from "@uni/entities";
 import { CategoriesEntity } from "@uni/modules/categories/entities/categorie.entity";
 import { ICategorie } from "@uni/modules/categories/interfaces/icategories";
 import { DepositStockEntity } from "@uni/modules/deposit.stock/entities/depot-stock.entity";
+import { ImageEntity } from "@uni/modules/images/entities/image.entity";
 import { InvoiceDetailsEntity } from "@uni/modules/invoice.details/entities/invoice.details.entity";
 import { SheetDepositEntity } from "@uni/modules/sheet.deposit/entities/sheet.deposit.entity";
 import { SheetStoreEntity } from "@uni/modules/sheet.store/entities/sheet.store.entity";
@@ -67,7 +68,9 @@ export class ProductsEntity extends IBaseEntity implements IProducts {
     sheet_store?: ISheetStore[];
 
     @OneToMany(() => SheetDepositEntity, (sheetdeposit) => sheetdeposit.product)
-    @JoinColumn()
     sheet_deposit?: ISheetDeposit[];
+
+    @OneToMany(()=>ImageEntity,(img)=>img.product)
+    image: IImages[];
 
 }
