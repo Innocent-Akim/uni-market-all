@@ -57,7 +57,7 @@ switch (dbType) {
             logging: getLoggingOptions(process.env.DB_LOGGING), // by default set to error only
             logger: 'advanced-console',
             maxQueryExecutionTime: dbSlowQueryLoggingTimeout,
-            synchronize: process.env.DB_SYNCHRONIZE != 'true', // We are using migrations, synchronize should be set to false.
+            synchronize: process.env.DB_SYNCHRONIZE === 'true', // We are using migrations, synchronize should be set to false.
             uuidExtension: 'pgcrypto',
             entities: ['dist/**/*.entity{.ts,.js}'],
             migrations: ['dist/databases/migrations/*{.ts,.js}'],

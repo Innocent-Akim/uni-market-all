@@ -7,9 +7,7 @@ import { ImageEntity } from './entities/image.entity';
 
 @Module({
   imports:[
-    RouterModule.register([
-      {path:'image', module:ImagesModule}
-    ]),
+    RouterModule.register([ {path:'image', module:ImagesModule} ]),
     TypeOrmModule.forFeature([ImageEntity])
   ],
   controllers: [ImagesController],

@@ -8,7 +8,8 @@
     "build:api": "pnpm --filter api build",
     "build:app": "pnpm --filter web build",
     "start:api": "pnpm --filter  start:dev",
-    "start:app": "pnpm --filter app start"
+    "start:admin": "pnpm run --filter web start:app"
+
   },
   "keywords": [],
   "author": "UNI-MARKET",
