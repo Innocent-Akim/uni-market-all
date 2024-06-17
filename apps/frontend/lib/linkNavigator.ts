@@ -4,7 +4,7 @@ export const LINK_DASHBOARD: HrefLink[] = [
         label: "Vue d'ensemble"
     },
     {
-        href: '/dashboard',
+        href: '/overview',
         label: 'Mesures de Succès'
     },
 
@@ -12,21 +12,21 @@ export const LINK_DASHBOARD: HrefLink[] = [
 
 export const LINK_PRODUCT: HrefLink[] = [
     {
-        href: '/products/nouveau',
+        href: '/products/new',
         label: 'Nouveau product'
     },
     {
-        href: '/products/categorie',
+        href: '/products/new-categorie',
         label: 'Nouvelle categorie'
     },
     {
-        href: '/products/detail',
+        href: '/products/details-products',
         label: 'Détails des Produits'
     },
 ]
 export const LINK_RAPPORT: HrefLink[] = [
     {
-        href: '/',
+        href: '/sales/history',
         label: 'Ventes/Sorties'
     },
     {
@@ -64,22 +64,22 @@ export const LINK_RAPPORT: HrefLink[] = [
 
 export const LINK_SORTIE: HrefLink[] = [
     {
-        href: '/sorties/nouveau',
+        href: '/sales/invoice',
         label: 'Nouvelle Sortie'
     },
     {
-        href: '/sorties/historique',
+        href: '/sales/history',
         label: 'Historique des Sorties'
     },
 ]
 
 export const LINK_ENTREE: HrefLink[] = [
     {
-        href: '/entree/nouvelle',
+        href: '/supplier/supply',
         label: 'Nouvelle Entrée'
     },
     {
-        href: '/entree/historique',
+        href: '/supplier/history',
         label: 'Historique des Entrées'
     },
 
