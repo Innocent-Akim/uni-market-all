@@ -2,7 +2,7 @@ import { ICompany, IUser } from "@uni/contracts";
 import { IBaseEntity } from "@uni/entities";
 import { Column, Entity } from "typeorm";
 
-@Entity('users')
+@Entity({name:'users'})
 export class UserEntity extends IBaseEntity implements IUser{
     @Column()
     name: string;

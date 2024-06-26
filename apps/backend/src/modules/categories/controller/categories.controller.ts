@@ -14,7 +14,6 @@ export class CategoriesController extends CrudController<CategoriesEntity> {
     }
     
     @Post()
-    // @UsePipes(new ValidationPipe({ transform: true }))
     async create(@Body() body:CategoriesDto):Promise<ICategorie>{
         return this.categorieServices.createCategories(body)
     }

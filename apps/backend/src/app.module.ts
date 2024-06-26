@@ -21,6 +21,9 @@ import { StoreStockModule } from './modules/store.stock/store.stock.module';
 import { DepositStockModule } from './modules/deposit.stock/deposit.stock.module';
 import { SubcategorieModule } from './modules/subcategorie/subcategorie.module';
 import { ImagesModule } from './modules/images/images.module';
+import { PaymentModule } from './modules/payment/payment.module';
+import { InvoiceDetailsModule } from './modules/invoice.details/invoice.details.module';
+import { InvoiceHeaderModule } from './modules/invoice.header/invoice.header.module';
 
 @Module({
   imports: [
@@ -53,7 +56,10 @@ import { ImagesModule } from './modules/images/images.module';
     StoreStockModule,
     DepositStockModule,
     SubcategorieModule,
-    ImagesModule
+    ImagesModule,
+    PaymentModule,
+    InvoiceDetailsModule,
+    InvoiceHeaderModule
   ],
   // controllers: [],
   // providers: [],

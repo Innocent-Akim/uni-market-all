@@ -1,7 +1,7 @@
 import { ICar, ICompany } from "@uni/contracts";
 import { IBaseEntity } from "@uni/entities";
 import { CompanyEntity } from "@uni/modules/company/entities/company.entity";
-import { Column, Entity, ManyToOne, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
+import { Column, Entity, ManyToOne } from "typeorm";
 
 @Entity({name:'cars'})
 export class CarEntity extends IBaseEntity implements ICar{

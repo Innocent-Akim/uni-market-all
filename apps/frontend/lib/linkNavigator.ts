@@ -102,27 +102,27 @@ export const LINK_IDENTIFICATE: HrefLink[] = [
 
 export const LINK_PARAMETRE: HrefLink[] = [
     {
-        href: '/',
+        href: '/settings/general',
         label: 'Paramètres généraux'
     },
     {
-        href: '/',
+        href: '/settings/',
         label: "Informations Entreprise"
     },
     {
-        href: '/',
+        href: '/settings',
         label: 'Taux de changer'
     },
     {
-        href: '/',
+        href: '/settings',
         label: 'Notifications paiement'
     },
     {
-        href: '/',
+        href: '/settings',
         label: 'Utilisateurs'
     },
     {
-        href: '/',
+        href: '/settings/role',
         label: 'Autorisation des rôles'
     },
 
