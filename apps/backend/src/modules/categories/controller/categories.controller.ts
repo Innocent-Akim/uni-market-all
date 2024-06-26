@@ -9,9 +9,7 @@ import { CategoriesDto } from '../dto/categories.dto';
 export class CategoriesController extends CrudController<CategoriesEntity> {
     constructor(
          private categorieServices:CategoriesService
-    ){
-        super(categorieServices)
-    }
+    ){super(categorieServices)}
     
     @Post()
     async create(@Body() body:CategoriesDto):Promise<ICategorie>{

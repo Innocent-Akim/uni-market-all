@@ -25,6 +25,9 @@ import { PaymentModule } from './modules/payment/payment.module';
 import { InvoiceDetailsModule } from './modules/invoice.details/invoice.details.module';
 import { InvoiceHeaderModule } from './modules/invoice.header/invoice.header.module';
 import { SupplyModule } from './modules/supply/supply.module';
+import { UserModule } from './modules/user/user.module';
+import { SupplyDetailsModule } from './modules/supply.details/supply.details.module';
+import {JwtModule} from  '@nestjs/jwt'
 /**
  *class module main for this application
  *
@@ -35,6 +38,10 @@ import { SupplyModule } from './modules/supply/supply.module';
   imports: [
     TypeOrmModule.forRootAsync({
       imports: [
+      JwtModule.register({
+        global:true,
+         secret:'secret.token'
+      }),
         ConfigModule.forRoot({
           isGlobal: true,
           load: [config],
@@ -66,7 +73,9 @@ import { SupplyModule } from './modules/supply/supply.module';
     PaymentModule,
     InvoiceDetailsModule,
     InvoiceHeaderModule,
-    SupplyModule
+    SupplyModule,
+    UserModule,
+    SupplyDetailsModule
   ],
   // controllers: [],
   // providers: [],
