@@ -24,7 +24,13 @@ import { ImagesModule } from './modules/images/images.module';
 import { PaymentModule } from './modules/payment/payment.module';
 import { InvoiceDetailsModule } from './modules/invoice.details/invoice.details.module';
 import { InvoiceHeaderModule } from './modules/invoice.header/invoice.header.module';
-
+import { SupplyModule } from './modules/supply/supply.module';
+/**
+ *class module main for this application
+ *
+ * @export
+ * @class AppModule
+ */
 @Module({
   imports: [
     TypeOrmModule.forRootAsync({
@@ -59,7 +65,8 @@ import { InvoiceHeaderModule } from './modules/invoice.header/invoice.header.mod
     ImagesModule,
     PaymentModule,
     InvoiceDetailsModule,
-    InvoiceHeaderModule
+    InvoiceHeaderModule,
+    SupplyModule
   ],
   // controllers: [],
   // providers: [],

@@ -10,3 +10,5 @@ export class InvoiceDetailsController extends CrudController<InvoiceDetailsEntit
         invoiceDetailService:InvoiceDetailsService
     ){ super(invoiceDetailService) }
 }
+
+

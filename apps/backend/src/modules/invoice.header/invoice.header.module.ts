@@ -3,17 +3,16 @@ import { InvoiceHeaderController } from './controller/invoice.header.controller'
 import { InvoiceHeaderService } from './service/invoice.header.service';
 import { RouterModule } from '@nestjs/core';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { InvoiceDetailsEntity } from '../invoice.details/entities/invoice.details.entity';
+import { InvoiceHeaderEntity } from './entities/invoice.header.entity';
 
 @Module({
   imports:[
     RouterModule.register([
       {
-        path:'/invoice.header',
+        path:'/invoice-header',
         module:InvoiceHeaderModule
-      }
-    ]),
-    TypeOrmModule.forFeature([InvoiceDetailsEntity])
+      }]),
+    TypeOrmModule.forFeature([InvoiceHeaderEntity])
   ],
   controllers: [InvoiceHeaderController],
   providers: [InvoiceHeaderService]
