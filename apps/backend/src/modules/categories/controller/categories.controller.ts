@@ -9,12 +9,9 @@ import { CategoriesDto } from '../dto/categories.dto';
 export class CategoriesController extends CrudController<CategoriesEntity> {
     constructor(
          private categorieServices:CategoriesService
-    ){
-        super(categorieServices)
-    }
+    ){super(categorieServices)}
     
     @Post()
-    // @UsePipes(new ValidationPipe({ transform: true }))
     async create(@Body() body:CategoriesDto):Promise<ICategorie>{
         return this.categorieServices.createCategories(body)
     }

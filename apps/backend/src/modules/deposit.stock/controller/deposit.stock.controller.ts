@@ -5,5 +5,5 @@ import { DepositStockService } from '../service/deposit.stock.service';
 
 @Controller()
 export class DepositStockController extends CrudController<DepositStockEntity> {
-    constructor(private depositStockService:DepositStockService){super(depositStockService)}
+    constructor(private readonly depositStockService:DepositStockService){super(depositStockService)}
 }

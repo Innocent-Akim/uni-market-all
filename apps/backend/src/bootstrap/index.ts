@@ -20,7 +20,12 @@ export async function bootstrap(
     app.use(urlencoded({ extended: true, limit: '50mb' }));
     app.set('trust proxy', true);
     app.enableShutdownHooks();
-    app.useGlobalPipes(new ValidationPipe());
+    app.useGlobalPipes(new ValidationPipe(
+      {
+        whitelist:true,
+        forbidNonWhitelisted:true
+      }
+    ));
     app.enableCors({
       origin: '*',
       methods: 'GET,HEAD,PUT,PATCH,POST,DELETE,OPTIONS',

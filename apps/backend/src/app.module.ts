@@ -21,11 +21,27 @@ import { StoreStockModule } from './modules/store.stock/store.stock.module';
 import { DepositStockModule } from './modules/deposit.stock/deposit.stock.module';
 import { SubcategorieModule } from './modules/subcategorie/subcategorie.module';
 import { ImagesModule } from './modules/images/images.module';
-
+import { PaymentModule } from './modules/payment/payment.module';
+import { InvoiceDetailsModule } from './modules/invoice.details/invoice.details.module';
+import { InvoiceHeaderModule } from './modules/invoice.header/invoice.header.module';
+import { SupplyModule } from './modules/supply/supply.module';
+import { UserModule } from './modules/user/user.module';
+import { SupplyDetailsModule } from './modules/supply.details/supply.details.module';
+import {JwtModule} from  '@nestjs/jwt'
+/**
+ *class module main for this application
+ *
+ * @export
+ * @class AppModule
+ */
 @Module({
   imports: [
     TypeOrmModule.forRootAsync({
       imports: [
+      JwtModule.register({
+        global:true,
+         secret:'secret.token'
+      }),
         ConfigModule.forRoot({
           isGlobal: true,
           load: [config],
@@ -53,7 +69,13 @@ import { ImagesModule } from './modules/images/images.module';
     StoreStockModule,
     DepositStockModule,
     SubcategorieModule,
-    ImagesModule
+    ImagesModule,
+    PaymentModule,
+    InvoiceDetailsModule,
+    InvoiceHeaderModule,
+    SupplyModule,
+    UserModule,
+    SupplyDetailsModule
   ],
   // controllers: [],
   // providers: [],

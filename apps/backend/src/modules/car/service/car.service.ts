@@ -14,7 +14,7 @@ export class CarService extends CrudService<CarEntity> {
 
 
     async saveCar(car: ICar): Promise<ICar> {
-        let res = await this.create(<any>(car));
+        let res = await this.create(<ICar>(car));
         return await this.findOneByIdString(res.id);
     }
 }
