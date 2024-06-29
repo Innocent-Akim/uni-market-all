@@ -13,16 +13,16 @@ export class UserEntity extends IBaseEntity implements IUser {
     @Column()
     password: string;
 
-    @Column()
+    @Column({ nullable: true })
     emailVerified: Date;
 
-    @Column()
+    @Column({ nullable: true })
     image: string;
 
-    @Column()
+    @Column({ nullable: true })
     refreshToken: string;
-    
-    @Column()
+
+    @Column({ nullable: true })
     lastLogin?: Date;
 
     company?: ICompany;

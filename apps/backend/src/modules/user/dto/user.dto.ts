@@ -26,6 +26,5 @@ export class UserDto{
     image:string;
 
     @IsOptional()
-    @IsDate()
     lastLogin?:Date
 }
