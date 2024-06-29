@@ -3,7 +3,6 @@ import { ICategorie } from "@uni/modules/categories/interfaces/icategories";
 import { IsNotEmpty, IsNumber, IsString } from "class-validator";
 
 export class ProductDto{
-
     @IsNotEmpty()
     @IsString()
     designation: string;
