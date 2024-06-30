@@ -27,7 +27,7 @@ import { InvoiceHeaderModule } from './modules/invoice.header/invoice.header.mod
 import { SupplyModule } from './modules/supply/supply.module';
 import { UserModule } from './modules/user/user.module';
 import { SupplyDetailsModule } from './modules/supply.details/supply.details.module';
-import {JwtModule} from  '@nestjs/jwt'
+import {JwtModule, JwtService} from  '@nestjs/jwt'
 /**
  *class module main for this application
  *
@@ -38,10 +38,6 @@ import {JwtModule} from  '@nestjs/jwt'
   imports: [
     TypeOrmModule.forRootAsync({
       imports: [
-      JwtModule.register({
-        global:true,
-         secret:'secret.token'
-      }),
         ConfigModule.forRoot({
           isGlobal: true,
           load: [config],
@@ -52,6 +48,15 @@ import {JwtModule} from  '@nestjs/jwt'
         const { dbConnectionOptions } = databaseService
         return dbConnectionOptions;
       }
+    }),
+    JwtModule.registerAsync({
+      imports:[ConfigModule],
+      useFactory:async(...args)=> ({
+          secret:'secret.token'
+      }),
+      inject:[],
+      global:true
+
     }),
     DatabaseModule,
     CompanyModule,
@@ -78,7 +83,7 @@ import {JwtModule} from  '@nestjs/jwt'
     SupplyDetailsModule
   ],
   // controllers: [],
-  // providers: [],
+  providers: [JwtService],
   exports: [TypeOrmModule]
 })
 export class AppModule { }

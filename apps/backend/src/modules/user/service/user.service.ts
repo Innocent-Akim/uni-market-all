@@ -4,14 +4,15 @@ import { UserEntity } from '../entities/user.entity';
 import { InjectRepository } from '@nestjs/typeorm';
 import { TypeOrmUserRepository } from '../repository/type-orm-user';
 import { UserDto } from '../dto/user.dto';
-import { getHashPassword } from '@uni/helpers/app.helpers';
 import { LoginDto } from '../dto/login.dto';
 import * as bcrypt from 'bcrypt';
+import { AppHelpers } from '@uni/helpers/app.helpers';
 
 @Injectable()
 export class UserService extends CrudService<UserEntity> {
 
     constructor(
+        private appHelpers: AppHelpers,
         @InjectRepository(UserEntity)
         typeOrmUserRepository: TypeOrmUserRepository
     ) { super(typeOrmUserRepository) }
@@ -21,7 +22,7 @@ export class UserService extends CrudService<UserEntity> {
         if (one_user) {
             throw new ForbiddenException("Mail already in the dadabase !!!")
         }
-        const password = await getHashPassword(user.password);
+        const password = await this.appHelpers.getHashPassword(user.password);
         const response = await this.typeOrmRepository.save({ ...user, password });
         return response;
     }
@@ -35,7 +36,12 @@ export class UserService extends CrudService<UserEntity> {
         if (!compare) {
             throw new NotFoundException("Votre nom d'utilisateur ou le mot de passe est incorrect.")
         };
-        return response;
+        const token = await this.appHelpers.generateAuthToken(response.id);
+        console.log(token)
+        return {
+            ...response,
+            token:token
+        };
 
 
     }
