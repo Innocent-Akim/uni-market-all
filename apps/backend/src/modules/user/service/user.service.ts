@@ -37,7 +37,6 @@ export class UserService extends CrudService<UserEntity> {
             throw new NotFoundException("Votre nom d'utilisateur ou le mot de passe est incorrect.")
         };
         const token = await this.appHelpers.generateAuthToken(response.id);
-        console.log(token)
         return {
             ...response,
             token:token

@@ -98,4 +98,19 @@ export class RequestContext {
 		}
 		return null;
 	}
+
+	/**
+ * Retrieves the current user ID associated with the user in the RequestContext.
+ * Returns the user ID if available, otherwise returns null.
+ *
+ * @returns {string | null} - The current user ID or null if not available.
+ */
+	static currentUserId(): string | null {
+		try {
+			const user: IUser | null = RequestContext.currentUser();
+			return user ? user.id : null;
+		} catch (error) {
+			return null;
+		}
+	}
 }
