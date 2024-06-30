@@ -26,4 +26,5 @@ export * from './account.model';
 export * from './session.model';
 export * from './verification-token.model'
 export * from './subcategorie.model'
-export * from './images.model'
+export * from './images.model';
+export * from './customRequest'

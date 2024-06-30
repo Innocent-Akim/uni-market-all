@@ -19,12 +19,10 @@ export class RequestContextMiddleware implements NestMiddleware {
 
 			// Override res.end
 			res.end = (...args: any[]): Response => {
-				console.log(`Context ${context.id}. Request to ${fullUrl} completed.`);
-
+			console.log(`Context ${context.id}. Request to ${fullUrl} completed.`);
 				// Call the original res.end and return its result
-				return originalEnd(...args);
+			return originalEnd(...args);
 			};
-
 			next();
 		});
 	}

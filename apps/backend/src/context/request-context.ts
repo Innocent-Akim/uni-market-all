@@ -4,6 +4,7 @@ import { v4 as uuidv4 } from 'uuid';
 import { JsonWebTokenError, verify } from 'jsonwebtoken';
 import { IUser } from '@uni/contracts';
 import { Request, Response, NextFunction } from 'express';
+import { ExtractJwt } from 'passport-jwt';
 
 
 export class RequestContext {
@@ -11,7 +12,7 @@ export class RequestContext {
 	private static logging: boolean = true;
 	protected readonly _id: string;
 	protected readonly _res: Response;
-	private readonly _req: Request;
+	private readonly _req: any;
 	protected static clsService: ClsService;
 	/**
 	 * Creates an instance of RequestContext.
@@ -46,6 +47,15 @@ export class RequestContext {
 		return this._id;
 	}
 
+		/**
+	 * Creates a shallow copy of the current instance of the RequestContext class.
+	 * @returns A new instance of RequestContext with the same property values as the original.
+	 */
+		copy(): RequestContext {
+			// Create a new object with the same prototype as the current instance
+			// and copy the properties of the current instance to the new object
+			return Object.assign(Object.create(Object.getPrototypeOf(this)), this);
+		}
 
 	/**
 	 * Gets the current request context.
@@ -85,10 +95,11 @@ export class RequestContext {
 	 * @param {boolean} throwError - Flag indicating whether to throw an error if user is not found.
 	 * @returns {IUser | null} - The current user if found, otherwise null.
 	 */
+
 	static currentUser(throwError?: boolean): IUser | null {
 		const requestContext = RequestContext.currentRequestContext();
 		if (requestContext) {
-			const user: IUser = requestContext._req['users'];
+			const user: IUser = requestContext._req['user'];
 			if (user) {
 				return user;
 			}
@@ -113,4 +124,28 @@ export class RequestContext {
 			return null;
 		}
 	}
+
+		/**
+	 * Extracts the current JWT token from the request context.
+	 *
+	 * @param throwError - Whether to throw an error if no token is found.
+	 * @returns The extracted token if found, otherwise null.
+	 */
+		static currentToken(throwError?: boolean): any {
+			const requestContext = RequestContext.currentRequestContext();
+			if (requestContext) {
+				try {
+					// tslint:disable-next-line
+					return ExtractJwt.fromAuthHeaderAsBearerToken()(requestContext._req as any);
+				} catch (error) {
+					// Do nothing here, we throw below anyway if needed
+					console.log(error);
+				}
+			}
+			if (throwError) {
+				throw new HttpException('Unauthorized', HttpStatus.UNAUTHORIZED);
+			}
+			return null;
+		}
+	
 }
