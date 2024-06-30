@@ -2,16 +2,18 @@ import { HttpException, HttpStatus } from '@nestjs/common';
 import { ClsService } from 'nestjs-cls';
 import { v4 as uuidv4 } from 'uuid';
 import { JsonWebTokenError, verify } from 'jsonwebtoken';
+import { IUser } from '@uni/contracts';
+import { Request, Response, NextFunction } from 'express';
 
-export class RequestContext{
 
-    private static logging: boolean = true;
+export class RequestContext {
+
+	private static logging: boolean = true;
 	protected readonly _id: string;
 	protected readonly _res: Response;
 	private readonly _req: Request;
 	protected static clsService: ClsService;
-
-    /**
+	/**
 	 * Creates an instance of RequestContext.
 	 * @param options - An object containing optional parameters for initializing the instance.
 	 * @param options.id - Optional Request ID. If not provided, a random ID (UUID) is generated.
@@ -35,7 +37,7 @@ export class RequestContext{
 		if (RequestContext.logging) console.log('RequestContext: setting context with Id:', this._id);
 	}
 
-    /**
+	/**
 	 * Gets the id.
 	 *
 	 * @returns The id.
@@ -57,37 +59,43 @@ export class RequestContext{
 		return context;
 	}
 
-	/**
-	 * Checks if the current request context has the specified permissions.
-	 *
-	 * @param permissions - An array of permissions to check.
-	 * @param throwError - Whether to throw an error if permissions are not found.
-	 * @returns True if the required permissions are found, otherwise false.
-	 */
-	// static hasPermissions(permissions: PermissionsEnum[], throwError?: boolean): boolean {
-	// 	const requestContext = RequestContext.currentRequestContext();
-	// 	if (requestContext) {
-	// 		try {
-	// 			// tslint:disable-next-line
-	// 			const token = this.currentToken();
-	// 			if (token) {
-	// 				const jwtPayload = verify(token,'token') as {
-	// 					id: string;
-	// 					permissions: PermissionsEnum[];
-	// 				};
-	// 				return permissions.every((permission: PermissionsEnum) =>
-	// 					(jwtPayload.permissions ?? []).includes(permission)
-	// 				);
-	// 			}
-	// 		} catch (error) {
-	// 			// Do nothing here, we throw below anyway if needed
-	// 			console.log(error);
-	// 		}
-	// 	}
-	// 	if (throwError) {
-	// 		throw new HttpException('Unauthorized', HttpStatus.UNAUTHORIZED);
-	// 	}
-	// 	return false;
-	// }
 
+	/**
+	 * Sets the ClsService instance to be used by RequestContext.
+	 *
+	 * @param service - The ClsService instance to set.
+	 */
+	static setClsService(service: ClsService) {
+		RequestContext.clsService = service;
+	}
+
+	/**
+	 * Gets the current request.
+	 *
+	 * @returns The current Request object or null if no context is available.
+	 */
+	static currentRequest(): any {
+		return RequestContext.currentRequestContext()?._req || null;
+	}
+
+
+
+	/**
+	 * Retrieves the current user from the request context.
+	 * @param {boolean} throwError - Flag indicating whether to throw an error if user is not found.
+	 * @returns {IUser | null} - The current user if found, otherwise null.
+	 */
+	static currentUser(throwError?: boolean): IUser | null {
+		const requestContext = RequestContext.currentRequestContext();
+		if (requestContext) {
+			const user: IUser = requestContext._req['users'];
+			if (user) {
+				return user;
+			}
+		}
+		if (throwError) {
+			throw new HttpException('Unauthorized', HttpStatus.UNAUTHORIZED);
+		}
+		return null;
+	}
 }

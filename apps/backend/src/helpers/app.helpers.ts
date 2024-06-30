@@ -1,11 +1,22 @@
-import { BadGatewayException, BadRequestException, ConflictException, ForbiddenException, GatewayTimeoutException, GoneException, HttpStatus, HttpVersionNotSupportedException, ImATeapotException, InternalServerErrorException, MethodNotAllowedException, NotAcceptableException, NotFoundException, NotImplementedException, PayloadTooLargeException, PreconditionFailedException, RequestTimeoutException, ServiceUnavailableException, UnauthorizedException, UnprocessableEntityException, UnsupportedMediaTypeException } from '@nestjs/common';
+import { BadGatewayException, BadRequestException, ConflictException, ForbiddenException, GatewayTimeoutException, GoneException, HttpStatus, HttpVersionNotSupportedException, ImATeapotException, Injectable, InternalServerErrorException, MethodNotAllowedException, NotAcceptableException, NotFoundException, NotImplementedException, PayloadTooLargeException, PreconditionFailedException, RequestTimeoutException, ServiceUnavailableException, UnauthorizedException, UnprocessableEntityException, UnsupportedMediaTypeException } from '@nestjs/common';
+import { JwtService } from '@nestjs/jwt';
 import * as bcrypt from 'bcrypt';
 
-// export class AppHelpers {
+@Injectable()
+export class AppHelpers {
+    constructor(
+        private jwtService:JwtService
+    ){}
 
 
  
+async  getHashPassword(password: string): Promise<string>{
+    return await bcrypt.hash(password, 10)
+}
 
+async generateAuthToken(userId:string){
+   return this.jwtService.sign({userId},{expiresIn:'1h'})
+}
 
 //     exception(status:HttpStatus) {
 //         switch(status){
@@ -39,10 +50,6 @@ import * as bcrypt from 'bcrypt';
        
 //     }
 
-// }
-
-
-export const  getHashPassword= async(password: string): Promise<string>=> {
-    return await bcrypt.hash(password, 10)
 }
+
 
