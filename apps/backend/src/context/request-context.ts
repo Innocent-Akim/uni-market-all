@@ -124,7 +124,64 @@ export class RequestContext {
 			return null;
 		}
 	}
+	/**
+ * Retrieves the current user ID associated with the user in the RequestContext.
+ * Returns the user ID if available, otherwise returns null.
+ *
+ * @returns {string | null} - The current user ID or null if not available.
+ */
+	static currentCompanyId(): string | null {
+		try {
+			const user: IUser | null = RequestContext.currentUser();
+			return user ? user.company.id : null;
+		} catch (error) {
+			return null;
+		}
+	}
+/**
+ * Retrieves the current user ID associated with the user in the RequestContext.
+ * Returns the user ID if available, otherwise returns null.
+ *
+ * @returns {string | null} - The current user ID or null if not available.
+ */
+static currentSuccursaleId(): string | null {
+	try {
+		const user: IUser | null = RequestContext.currentUser();
+		return user ? user.succursale.id : null;
+	} catch (error) {
+		return null;
+	}
+}
 
+/**
+ * Retrieves the current user ID associated with the user in the RequestContext.
+ * Returns the user ID if available, otherwise returns null.
+ *
+ * @returns {string | null} - The current user ID or null if not available.
+ */
+static currentDepositId(): string | null {
+	try {
+		const user: IUser | null = RequestContext.currentUser();
+		return user ? user.deposit.id : null;
+	} catch (error) {
+		return null;
+	}
+}
+
+/**
+ * Retrieves the current user ID associated with the user in the RequestContext.
+ * Returns the user ID if available, otherwise returns null.
+ *
+ * @returns {string | null} - The current user ID or null if not available.
+ */
+static currentStoreId(): string | null {
+	try {
+		const user: IUser | null = RequestContext.currentUser();
+		return user ? user.store.id : null;
+	} catch (error) {
+		return null;
+	}
+}
 		/**
 	 * Extracts the current JWT token from the request context.
 	 *

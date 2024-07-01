@@ -4,7 +4,7 @@ import { IBaseCompanyEntity, IBaseEntityModel, ICompany, IDeposit, IStore, ISucc
  *
  * @export
  * @interface IUser
- * @extends {IBaseCompanyEntity}
+ * @extends {IBaseEntityModel}
  */
 export interface IUser extends IBaseEntityModel{
     name:string;

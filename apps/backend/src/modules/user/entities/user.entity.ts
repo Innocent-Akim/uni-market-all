@@ -41,7 +41,7 @@ export class UserEntity extends IBaseEntity implements IUser {
     lastLogin?: Date;
 
     @ManyToOne(()=>CompanyEntity,(company)=>company.user,{
-        nullable:false
+        nullable:true
     })
     company?: ICompany;
 

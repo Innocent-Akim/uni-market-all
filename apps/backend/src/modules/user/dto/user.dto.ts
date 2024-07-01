@@ -1,30 +1,60 @@
-import { IsDate, IsNotEmpty, IsOptional, IsString } from "class-validator";
+import { ICompany, IDeposit, IStore, ISuccursal } from "@uni/contracts";
+import { IsDate, IsEmail, IsNotEmpty, IsOptional, IsPhoneNumber, IsString } from "class-validator";
 
 export class UserDto{
     @IsNotEmpty()
     @IsString()
-    name:string;
+    name: string;
+    
+    @IsOptional()
+    @IsEmail()
+    email: string;
+
+    @IsNotEmpty()
+    @IsPhoneNumber()
+    phone?: string;
 
     @IsNotEmpty()
     @IsString()
-    email:string;
-
-    @IsNotEmpty()
-    @IsString()
-    password:string;
+    password: string;
 
     @IsOptional()
     @IsString()
-    refreshToken:string;
+    emailVerified: Date;
 
     @IsOptional()
     @IsString()
-    emailVerified:Date;
+    image: string;
+
+    @IsOptional()
+    @IsString()
+    refreshToken: string;
+
+    @IsOptional()
+    @IsString()
+    refreshTokenExpiration?: Date;
+
+    @IsOptional()
+    @IsString()
+    Lastaccess?: string;
+
+    @IsOptional()
+    @IsString()
+    lastLogin?: Date;
+
+    @IsOptional()
+    @IsString()
+    company?: ICompany;
+
+    @IsOptional()
+    @IsString()
+    succursale?: ISuccursal;
+
+    @IsOptional()
+    @IsString()
+    deposit?: IDeposit;
     
     @IsOptional()
     @IsString()
-    image:string;
-
-    @IsOptional()
-    lastLogin?:Date
+    store?: IStore;
 }
