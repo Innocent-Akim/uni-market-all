@@ -1,4 +1,5 @@
 import { ApiProperty } from "@nestjs/swagger";
+import { IUser } from "@uni/contracts";
 import { ICompany } from "@uni/contracts/company.model";
 import { IDeposit } from "@uni/contracts/deposit.model";
 import { IProducts } from "@uni/contracts/products.model";
@@ -7,7 +8,8 @@ import { IBaseEntity } from "@uni/entities";
 import { CompanyEntity } from "@uni/modules/company/entities/company.entity";
 import { DepositEntity } from "@uni/modules/deposit/entities/deposit.entity";
 import { ProductsEntity } from "@uni/modules/products/entities/products.entity";
-import { Column, CreateDateColumn, DeleteDateColumn, Entity, JoinColumn, ManyToOne, OneToMany, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
+import { UserEntity } from "@uni/modules/user/entities/user.entity";
+import { Column, Entity, JoinColumn, ManyToOne, OneToMany} from "typeorm";
 
 @Entity({ name: 'succursales' })
 export class SuccursaleEntity extends IBaseEntity implements ISuccursal {
@@ -57,4 +59,7 @@ export class SuccursaleEntity extends IBaseEntity implements ISuccursal {
 
 @OneToMany(()=>DepositEntity,(deposit)=>deposit.succursale)
 deposit?: IDeposit[];
+
+@OneToMany(()=>UserEntity,(user)=>user.succursale)
+user?: IUser[];
 }

@@ -14,12 +14,12 @@ export class CompanyService extends CrudService<CompanyEntity> {
 
     async saveCompany(company: CompanyDTO): Promise<CompanyEntity> {
 try {
-    const existed=await this.findOneByOptions({where:{name:company.name}});
-        if(!existed){
+    const existed=await this.typeOrmRepository.findOne({where:{name:company.name}});
+        if(existed){
             throw new NotFoundException('already')
         }
     let res = await this.save(company);
-    return await this.findOneByIdString(res.id)
+    return await this.typeOrmRepository.findOne({where:{id:res.id}})
 } catch (error) {
     throw new NotFoundException(error)
 

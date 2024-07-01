@@ -1,5 +1,4 @@
-import { Module } from '@nestjs/common';
-
+import { Module, OnModuleInit } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { DatabaseService } from './databases';
 import { ConfigModule } from '@nestjs/config';
@@ -28,6 +27,8 @@ import { SupplyModule } from './modules/supply/supply.module';
 import { UserModule } from './modules/user/user.module';
 import { SupplyDetailsModule } from './modules/supply.details/supply.details.module';
 import {JwtModule, JwtService} from  '@nestjs/jwt'
+import { ClsModule, ClsService } from 'nestjs-cls';
+import { RequestContext } from './context';
 /**
  *class module main for this application
  *
@@ -36,6 +37,10 @@ import {JwtModule, JwtService} from  '@nestjs/jwt'
  */
 @Module({
   imports: [
+    ClsModule.forRoot({
+			global: true,
+			middleware: { mount: false }
+		}),
     TypeOrmModule.forRootAsync({
       imports: [
         ConfigModule.forRoot({
@@ -52,7 +57,7 @@ import {JwtModule, JwtService} from  '@nestjs/jwt'
     JwtModule.registerAsync({
       imports:[ConfigModule],
       useFactory:async(...args)=> ({
-          secret:'secret.token'
+          secret:process.env.JWT_SECRET
       }),
       inject:[],
       global:true
@@ -86,4 +91,10 @@ import {JwtModule, JwtService} from  '@nestjs/jwt'
   providers: [JwtService],
   exports: [TypeOrmModule]
 })
-export class AppModule { }
+export class AppModule implements OnModuleInit {
+  constructor(private readonly clsService: ClsService) {}
+  onModuleInit() {
+	// Set the ClsService in RequestContext one time on app start before any request
+  RequestContext.setClsService(this.clsService);
+  console.log('AppModule initialized, ClsService set in RequestContext.');  }
+}

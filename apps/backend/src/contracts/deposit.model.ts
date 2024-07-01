@@ -1,4 +1,4 @@
-import { IBaseSuccursale, IDepositSocks, IInvoiceHeader, ISheetDeposit, IStore, ISuccursal, ISupply } from ".";
+import { IBaseSuccursale, IDepositSocks, IInvoiceHeader, ISheetDeposit, IStore, ISuccursal, ISupply, IUser } from ".";
 
 export interface IDeposit extends IBaseSuccursale{
     designation:string;
@@ -10,5 +10,7 @@ export interface IDeposit extends IBaseSuccursale{
     stock_deposit?:IDepositSocks[];
     invoice_header?:IInvoiceHeader[]
     supply?:ISupply[]
-    sheet_deposit?:ISheetDeposit[]
+    sheet_deposit?:ISheetDeposit[],
+    user?:IUser[]
+
 }

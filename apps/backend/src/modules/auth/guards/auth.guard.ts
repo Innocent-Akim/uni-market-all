@@ -7,23 +7,21 @@ import { Request } from 'express'
 export class AuthGuard implements CanActivate {
     constructor(private jwtService: JwtService) { } 
     canActivate(context: ExecutionContext): boolean | Promise<boolean> | Observable<boolean> {
-
-        const request:Request = context.switchToHttp().getRequest();
-        const token = this.extractTokenFromHeader(request);
+        const req:Request = context.switchToHttp().getRequest();
+        const token = this.extractTokenFromHeader(req);
         if (!token) {
             throw new UnauthorizedException()
         } 
         try {
             const payload = this.jwtService.verify(token);
-            console.log(payload)
+            req['user']=payload;
         } catch (error) {
             throw new UnauthorizedException()
         }
         return true;
     }
-
-
+    
     private extractTokenFromHeader(request: Request): string | undefined {
-        return request.headers.authorization?.split(' ')[1]
+        return request.headers.authorization.split(' ')[1]
     }
 }

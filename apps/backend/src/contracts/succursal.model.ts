@@ -1,3 +1,4 @@
+import { IUser } from ".";
 import { IBaseCompanyEntity } from "./base-entity.model";
 import { IDeposit } from "./deposit.model";
 import { IProducts } from "./products.model";
@@ -13,5 +14,7 @@ export interface ISuccursal extends IBaseCompanyEntity{
     timeZone?: string;
     overview:string
     products?:IProducts[];
-    deposit?:IDeposit[]
+    deposit?:IDeposit[],
+    user?:IUser[]
+
 }

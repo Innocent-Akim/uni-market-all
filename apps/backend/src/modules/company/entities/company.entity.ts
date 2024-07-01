@@ -1,4 +1,4 @@
-import { ICar, ICustom, ISupplier } from "@uni/contracts";
+import { ICar, ICustom, ISupplier, IUser } from "@uni/contracts";
 import { ICompany } from "@uni/contracts/company.model";
 import { ISuccursal } from "@uni/contracts/succursal.model";
 import { IBaseEntity } from "@uni/entities";
@@ -7,6 +7,7 @@ import { CategoriesEntity } from "@uni/modules/categories/entities/categorie.ent
 import { ICategorie } from "@uni/modules/categories/interfaces/icategories";
 import {  CustomEntity } from "@uni/modules/custom/entities/custom.entity";
 import { SupplierEntity } from "@uni/modules/supplier/entities/supplier.entity";
+import { UserEntity } from "@uni/modules/user/entities/user.entity";
 import {  Column,Entity, JoinColumn,  OneToMany } from "typeorm";
 @Entity({name:'companys'})
 export class CompanyEntity extends IBaseEntity  implements ICompany {
@@ -59,5 +60,10 @@ export class CompanyEntity extends IBaseEntity  implements ICompany {
   
   @OneToMany(()=>CarEntity,(car)=>car.company)
   car?: ICar[];
+
+  @OneToMany(()=>UserEntity,(user)=>user.company,{
+    nullable:true
+  })
+  user?: IUser[];
 
 }
