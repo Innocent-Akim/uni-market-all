@@ -4,6 +4,7 @@ import { ISuccursal } from "./succursal.model";
 import { ISupplier } from "./supplier.model";
 import { ICar } from "./car.model";
 import { ICategorie } from "@uni/modules/categories/interfaces/icategories";
+import { IUser } from ".";
 
 export interface ICompany extends IBaseCompanyEntity{
     name:string;
@@ -19,4 +20,5 @@ export interface ICompany extends IBaseCompanyEntity{
     supplier?:ISupplier[];
     categorie?:ICategorie[];
     car?:ICar[]
+    user?:IUser[]
 }

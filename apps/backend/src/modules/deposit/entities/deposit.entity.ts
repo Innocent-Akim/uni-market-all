@@ -1,4 +1,4 @@
-import { IInvoiceHeader, ISheetDeposit, ISupply } from "@uni/contracts";
+import { IInvoiceHeader, ISheetDeposit, ISupply, IUser } from "@uni/contracts";
 import { IDeposit } from "@uni/contracts/deposit.model";
 import { IDepositSocks } from "@uni/contracts/deposit.stock";
 import { IStore } from "@uni/contracts/store.model";
@@ -10,6 +10,7 @@ import { SheetDepositEntity } from "@uni/modules/sheet.deposit/entities/sheet.de
 import { StoreEntity } from "@uni/modules/store/entities/store.entity";
 import { SuccursaleEntity } from "@uni/modules/succursale/entities/succursale.entity";
 import { SupplierEntity } from "@uni/modules/supplier/entities/supplier.entity";
+import { UserEntity } from "@uni/modules/user/entities/user.entity";
 import { Column,Entity, ManyToOne, OneToMany} from "typeorm";
 
 @Entity({ name: 'deposits' })
@@ -45,11 +46,18 @@ export class DepositEntity extends IBaseEntity implements IDeposit {
 
     @OneToMany(()=>SupplierEntity,(supply)=>supply.company,{
         onDelete:'CASCADE',
-        onUpdate:'CASCADE'
+        onUpdate:'CASCADE',
+        nullable:true
     })
     supply?: ISupply[];
     @OneToMany(()=>SheetDepositEntity,(sheetdeposit)=>sheetdeposit.deposit)
     sheet_deposit?: ISheetDeposit[];
+    
+    @OneToMany(()=>UserEntity,(user)=>user.deposit)
+    user?: IUser[];
+
+
+
 
     
 

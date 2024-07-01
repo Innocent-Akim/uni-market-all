@@ -19,7 +19,6 @@ export class UserService extends CrudService<UserEntity> {
     ) { super(typeOrmUserRepository) }
 
     async createUser(user: UserDto): Promise<UserDto> {
-      const id=  RequestContext.currentUserId();
         const one_user = await this.typeOrmRepository.findOne({ where: { email: user.email } });
         if (one_user) {
             throw new ForbiddenException("Mail already in the dadabase !!!")

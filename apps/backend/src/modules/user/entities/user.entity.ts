@@ -1,6 +1,7 @@
-import { ICompany, IUser } from "@uni/contracts";
+import { ICompany, IDeposit, IStore, ISuccursal, IUser } from "@uni/contracts";
 import { IBaseEntity } from "@uni/entities";
-import { Column, Entity } from "typeorm";
+import { DepositEntity } from "@uni/modules/deposit/entities/deposit.entity";
+import { Column, Entity, ManyToOne } from "typeorm";
 
 @Entity({ name: 'users' })
 export class UserEntity extends IBaseEntity implements IUser {
@@ -9,6 +10,9 @@ export class UserEntity extends IBaseEntity implements IUser {
 
     @Column()
     email: string;
+    
+    @Column({nullable:true})
+    phone?: string;
 
     @Column()
     password: string;
@@ -22,8 +26,26 @@ export class UserEntity extends IBaseEntity implements IUser {
     @Column({ nullable: true })
     refreshToken: string;
 
+
+    @Column({ nullable: true })
+    refreshTokenExpiration?: Date;
+
+
+    @Column({ nullable: true })
+    Lastaccess?: string;
+
     @Column({ nullable: true })
     lastLogin?: Date;
+    
 
     company?: ICompany;
+
+    succursale?: ISuccursal;
+    
+    @ManyToOne(()=>DepositEntity,(deposit)=>deposit.user,{
+        nullable:true
+    })
+    deposit?: IDeposit;
+
+    store?: IStore;
 }

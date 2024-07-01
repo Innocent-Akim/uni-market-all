@@ -135,10 +135,8 @@ export class RequestContext {
 			const requestContext = RequestContext.currentRequestContext();
 			if (requestContext) {
 				try {
-					// tslint:disable-next-line
 					return ExtractJwt.fromAuthHeaderAsBearerToken()(requestContext._req as any);
 				} catch (error) {
-					// Do nothing here, we throw below anyway if needed
 					console.log(error);
 				}
 			}
