@@ -133,7 +133,7 @@ export class RequestContext {
 	static currentCompanyId(): string | null {
 		try {
 			const user: IUser | null = RequestContext.currentUser();
-			return user ? user.company.id : null;
+			return user ? user.companyId : null;
 		} catch (error) {
 			return null;
 		}
@@ -162,7 +162,7 @@ static currentSuccursaleId(): string | null {
 static currentDepositId(): string | null {
 	try {
 		const user: IUser | null = RequestContext.currentUser();
-		return user ? user.deposit.id : null;
+		return user ? user.depositId : null;
 	} catch (error) {
 		return null;
 	}
@@ -177,7 +177,7 @@ static currentDepositId(): string | null {
 static currentStoreId(): string | null {
 	try {
 		const user: IUser | null = RequestContext.currentUser();
-		return user ? user.store.id : null;
+		return user ? user.storeId : null;
 	} catch (error) {
 		return null;
 	}

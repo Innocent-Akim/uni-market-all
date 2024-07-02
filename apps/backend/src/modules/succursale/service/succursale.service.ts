@@ -16,8 +16,7 @@ export class SuccursaleService extends CrudService<SuccursaleEntity> {
 
 
     async createSuccursale(body:SuccursaleDto ):Promise<SuccursaleEntity>{
-   
-            const response=await this.create({...body});
+            const response=await this.typeOrmRepository.save({...body});
             return response;
        
     }

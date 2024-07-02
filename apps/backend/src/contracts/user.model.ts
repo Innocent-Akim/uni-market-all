@@ -20,6 +20,32 @@ export interface IUser extends IBaseEntityModel{
     company?:ICompany;
     succursale?:ISuccursal;
     deposit?:IDeposit;
-    store?:IStore
+    store?:IStore;
+
+    companyId?:ICompany['id'];
+    succursaleId?:ISuccursal['id'];
+    depositId?:IDeposit['id'];
+    storeId?:IStore['id']
+    
+
+}
+
+
+
+export interface IGetUser extends IBaseEntityModel{
+    name:string;
+    lastname?:string
+    email?:string;
+    phone?:string
+    password:string;
+    refreshToken?:string;
+    emailVerified?:Date;
+    refreshTokenExpiration?:Date,
+    image:string;
+    lastLogin?:Date;
+    companyId?:ICompany['id'];
+    succursaleId?:ISuccursal['id'];
+    depositId?:IDeposit['id'];
+    storeId?:IStore['id']
 
 }

@@ -1,11 +1,26 @@
 import { Type } from 'class-transformer';
-import { IsBoolean, IsNotEmpty, IsOptional, IsString, IsInt, IsDate } from 'class-validator';
+import { IsBoolean, IsNotEmpty, IsOptional, IsString, IsInt, IsDate, IsEmail } from 'class-validator';
 
 export class CompanyDTO {
 
-    @IsNotEmpty({message:''})
+    @IsNotEmpty()
     @IsString()
     name: string;
+
+
+    @IsOptional()
+    @IsEmail()
+    email?: string;
+
+
+    @IsNotEmpty()
+    @IsString()
+    phone?: string;
+
+
+    @IsNotEmpty()
+    @IsString()
+    address?: string;
 
     @IsOptional()
     @IsBoolean()

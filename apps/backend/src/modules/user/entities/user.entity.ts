@@ -4,7 +4,7 @@ import { CompanyEntity } from "@uni/modules/company/entities/company.entity";
 import { DepositEntity } from "@uni/modules/deposit/entities/deposit.entity";
 import { StoreEntity } from "@uni/modules/store/entities/store.entity";
 import { SuccursaleEntity } from "@uni/modules/succursale/entities/succursale.entity";
-import { Column, Entity, ManyToOne } from "typeorm";
+import { Column, Entity, ManyToOne, RelationId } from "typeorm";
 
 @Entity({ name: 'users' })
 export class UserEntity extends IBaseEntity implements IUser {
@@ -29,10 +29,8 @@ export class UserEntity extends IBaseEntity implements IUser {
     @Column({ nullable: true })
     refreshToken: string;
 
-
     @Column({ nullable: true })
     refreshTokenExpiration?: Date;
-
 
     @Column({ nullable: true })
     Lastaccess?: string;
@@ -59,4 +57,18 @@ export class UserEntity extends IBaseEntity implements IUser {
         nullable: true
     })
     store?: IStore;
+
+    @RelationId((t:UserEntity)=>t.company)
+    companyId?: string; 
+
+    @RelationId((t:UserEntity)=>t.store)
+    storeId?: string;
+
+    @RelationId((t:UserEntity)=>t.deposit)
+    depositId?: string;
+
+    @RelationId((t:UserEntity)=>t.succursale)
+    succursaleId?:string;
+
+ 
 }
