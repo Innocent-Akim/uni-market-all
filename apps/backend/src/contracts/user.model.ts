@@ -20,7 +20,13 @@ export interface IUser extends IBaseEntityModel{
     company?:ICompany;
     succursale?:ISuccursal;
     deposit?:IDeposit;
-    store?:IStore
+    store?:IStore;
+
+    companyId?:ICompany['id'];
+    succursaleId?:ISuccursal['id'];
+    depositId?:IDeposit['id'];
+    storeId?:IStore['id']
+    
 
 }
 

@@ -1,5 +1,5 @@
 import { ICompany, IDeposit, IStore, ISuccursal } from "@uni/contracts";
-import { IsDate, IsEmail, IsNotEmpty, IsOptional, IsPhoneNumber, IsString } from "class-validator";
+import { IsDate, IsEmail, IsNotEmpty, IsOptional, isMobilePhone, IsString } from "class-validator";
 
 export class UserDto{
     @IsNotEmpty()
@@ -11,6 +11,7 @@ export class UserDto{
     email: string;
 
     @IsNotEmpty()
+    @IsString()
     phone?: string;
 
     @IsNotEmpty()
@@ -41,7 +42,7 @@ export class UserDto{
     @IsString()
     lastLogin?: Date;
 
-    @IsOptional()
+    @IsNotEmpty()
     @IsString()
     company?: ICompany;
 

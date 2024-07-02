@@ -16,7 +16,7 @@ export class AppHelpers {
         return await bcrypt.hash(password, 10)
     }
 
-    async generateAuthToken(user: Partial<IGetUser>): Promise<string> {
+    async generateAuthToken(user: Partial<IUser>): Promise<string> {
         try {
             
             const { id, email,companyId,succursaleId,storeId,depositId } = user;

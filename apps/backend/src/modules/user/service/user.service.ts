@@ -20,8 +20,8 @@ export class UserService extends CrudService<UserEntity> {
 
     async createUser(user: UserDto): Promise<UserDto> {
         const one_user = await this.typeOrmRepository.findOne({ where: { email: user.email } });
-        const context=RequestContext.currentDepositId()
-        console.log(context)
+        const companyId=RequestContext.currentCompanyId()
+        console.log('Company id============>',companyId)
         if (one_user) {
             throw new ForbiddenException("Mail already in the dadabase !!!")
         }
@@ -31,8 +31,7 @@ export class UserService extends CrudService<UserEntity> {
     }
 
     async authificate(login: LoginDto): Promise<any> {
-        const user = await this.typeOrmRepository.findOne({ where: { email: login.email },relationLoadStrategy:'query' });
-        console.log(user)
+        const user = await this.typeOrmRepository.findOne({ where: { email: login.email } });
         if (!user) {
             throw new NotFoundException("Votre nom d'utilisateur ou le mot de passe est incorrect.")
         }

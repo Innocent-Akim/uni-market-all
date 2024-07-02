@@ -57,16 +57,18 @@ export class UserEntity extends IBaseEntity implements IUser {
         nullable: true
     })
     store?: IStore;
-     
-    @RelationId((t:UserEntity)=>t.store)
-    storeId?: IStore['id'];
-
-    @RelationId((t:UserEntity)=>t.deposit)
-    depositId?: IDeposit['id'];
-
-    @RelationId((t:UserEntity)=>t.succursale)
-    succursaleId?: ISuccursal['id'];
 
     @RelationId((t:UserEntity)=>t.company)
-    companyId?: ICompany['id'];
+    companyId?: string; 
+
+    @RelationId((t:UserEntity)=>t.store)
+    storeId?: string;
+
+    @RelationId((t:UserEntity)=>t.deposit)
+    depositId?: string;
+
+    @RelationId((t:UserEntity)=>t.succursale)
+    succursaleId?:string;
+
+ 
 }
