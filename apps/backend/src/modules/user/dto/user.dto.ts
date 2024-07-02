@@ -11,7 +11,6 @@ export class UserDto{
     email: string;
 
     @IsNotEmpty()
-    @IsPhoneNumber()
     phone?: string;
 
     @IsNotEmpty()
@@ -53,7 +52,7 @@ export class UserDto{
     @IsOptional()
     @IsString()
     deposit?: IDeposit;
-    
+
     @IsOptional()
     @IsString()
     store?: IStore;

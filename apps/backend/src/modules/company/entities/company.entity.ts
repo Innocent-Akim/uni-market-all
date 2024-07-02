@@ -5,64 +5,69 @@ import { IBaseEntity } from "@uni/entities";
 import { CarEntity } from "@uni/modules/car/entities/car.entity";
 import { CategoriesEntity } from "@uni/modules/categories/entities/categorie.entity";
 import { ICategorie } from "@uni/modules/categories/interfaces/icategories";
-import {  CustomEntity } from "@uni/modules/custom/entities/custom.entity";
+import { CustomEntity } from "@uni/modules/custom/entities/custom.entity";
 import { SupplierEntity } from "@uni/modules/supplier/entities/supplier.entity";
 import { UserEntity } from "@uni/modules/user/entities/user.entity";
-import {  Column,Entity, JoinColumn,  OneToMany } from "typeorm";
-@Entity({name:'companys'})
-export class CompanyEntity extends IBaseEntity  implements ICompany {
+import { Column, Entity, OneToMany } from "typeorm";
+@Entity({ name: 'companys' })
+export class CompanyEntity extends IBaseEntity implements ICompany {
 
-    @Column()
-    name: string;
+  @Column()
+  name: string;
 
-    @Column()
-    isDefault: boolean;
+  @Column({ nullable: true })
+  phone?: string;
 
-    @Column()
-    valueDate?: Date;
+  @Column({ nullable: true })
+  email?: string;
 
-    @Column()
-    status?: string;
+  @Column({ nullable: true })
+  address: string;
 
-    @Column()
-    overview: string;
+  @Column({ nullable: true })
+  isDefault: boolean;
 
-    @Column()
-    totalEmployees: number;
+  @Column({ nullable: true })
+  valueDate?: Date;
 
-    @Column()
-    timeZone?: string;
+  @Column()
+  status?: string;
 
-    @Column()
-    imageUrl?: string;
-   
+  @Column({ nullable: true })
+  overview: string;
 
-    @OneToMany(()=>CompanyEntity,(company)=>company.succersale)
-    succersale?: ISuccursal[];
+  @Column()
+  totalEmployees: number;
 
-    
-    @OneToMany(()=>CustomEntity,(custom)=>custom.company,{
-        onDelete:'CASCADE',
-        onUpdate:'CASCADE'
-    })
-    @JoinColumn()
-    custom?: ICustom[];
+  @Column({ nullable: true })
+  timeZone?: string;
 
-  @OneToMany(()=>SupplierEntity,(supplier)=>supplier.company,{
-    onDelete:"CASCADE",
-    onUpdate:'CASCADE'
+  @Column({ nullable: true })
+  imageUrl?: string;
+
+  @OneToMany(() => CompanyEntity, (company) => company.succersale)
+  succersale?: ISuccursal[];
+
+  @OneToMany(() => CustomEntity, (custom) => custom.company, {
+    onDelete: 'CASCADE',
+    onUpdate: 'CASCADE'
   })
-  @JoinColumn()
+  custom?: ICustom[];
+
+  @OneToMany(() => SupplierEntity, (supplier) => supplier.company, {
+    onDelete: "CASCADE",
+    onUpdate: 'CASCADE'
+  })
   supplier?: ISupplier[];
-  
-  @OneToMany(()=>CategoriesEntity,(categorie)=>categorie.company)
+
+  @OneToMany(() => CategoriesEntity, (categorie) => categorie.company)
   categorie?: ICategorie[];
-  
-  @OneToMany(()=>CarEntity,(car)=>car.company)
+
+  @OneToMany(() => CarEntity, (car) => car.company)
   car?: ICar[];
 
-  @OneToMany(()=>UserEntity,(user)=>user.company,{
-    nullable:true
+  @OneToMany(() => UserEntity, (user) => user.company, {
+    nullable: true
   })
   user?: IUser[];
 

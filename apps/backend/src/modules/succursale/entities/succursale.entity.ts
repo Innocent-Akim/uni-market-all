@@ -20,10 +20,10 @@ export class SuccursaleEntity extends IBaseEntity implements ISuccursal {
     @Column()
     adresse: string;
 
-    @Column()
+    @Column({nullable:true})
     phone: string;
 
-    @Column()
+    @Column({nullable:true})
     mail: string;
 
     @Column()

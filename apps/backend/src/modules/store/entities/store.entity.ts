@@ -32,7 +32,7 @@ export class StoreEntity extends IBaseEntity implements IStore {
     @OneToMany(()=>SheetStoreEntity,(sheetstore)=>sheetstore.store)
     sheet_store?: ISheetStore[];
     
-    @OneToMany(()=>UserEntity,(user)=>user.store,{
+    @OneToMany(()=>UserEntity,(user)=>user.storeId,{
         nullable:true
     })
     user?: IUser[];

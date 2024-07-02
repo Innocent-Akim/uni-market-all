@@ -23,3 +23,23 @@ export interface IUser extends IBaseEntityModel{
     store?:IStore
 
 }
+
+
+
+export interface IGetUser extends IBaseEntityModel{
+    name:string;
+    lastname?:string
+    email?:string;
+    phone?:string
+    password:string;
+    refreshToken?:string;
+    emailVerified?:Date;
+    refreshTokenExpiration?:Date,
+    image:string;
+    lastLogin?:Date;
+    companyId?:ICompany['id'];
+    succursaleId?:ISuccursal['id'];
+    depositId?:IDeposit['id'];
+    storeId?:IStore['id']
+
+}

@@ -162,6 +162,7 @@ static currentSuccursaleId(): string | null {
 static currentDepositId(): string | null {
 	try {
 		const user: IUser | null = RequestContext.currentUser();
+		console.log('================>',user.company)
 		return user ? user.deposit.id : null;
 	} catch (error) {
 		return null;

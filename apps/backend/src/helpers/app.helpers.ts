@@ -1,6 +1,6 @@
 import { BadGatewayException, BadRequestException, ConflictException, ForbiddenException, GatewayTimeoutException, GoneException, HttpStatus, HttpVersionNotSupportedException, ImATeapotException, Injectable, InternalServerErrorException, MethodNotAllowedException, NotAcceptableException, NotFoundException, NotImplementedException, PayloadTooLargeException, PreconditionFailedException, RequestTimeoutException, ServiceUnavailableException, UnauthorizedException, UnprocessableEntityException, UnsupportedMediaTypeException } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
-import { IUser } from '@uni/contracts';
+import { IGetUser, IUser } from '@uni/contracts';
 import * as bcrypt from 'bcrypt';
 import { JsonWebTokenError, JwtPayload, sign, verify } from 'jsonwebtoken';
 
@@ -16,13 +16,14 @@ export class AppHelpers {
         return await bcrypt.hash(password, 10)
     }
 
-    async generateAuthToken(user: Partial<IUser>): Promise<string> {
+    async generateAuthToken(user: Partial<IGetUser>): Promise<string> {
         try {
-            const { id, email } = user;
+            
+            const { id, email,companyId,succursaleId,storeId,depositId } = user;
             if (!id || !email) {
                 throw new Error('User id and email are required to generate JWT.');
             }
-            const payload: JwtPayload = { id, email };
+            const payload: JwtPayload = { id, email, companyId,succursaleId,storeId,depositId};
             return this.jwtService.sign(payload, {
                 secret: process.env.JWT_SECRET,
                 expiresIn: '1h', 

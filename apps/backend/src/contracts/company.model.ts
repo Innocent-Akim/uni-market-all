@@ -8,6 +8,9 @@ import { IUser } from ".";
 
 export interface ICompany extends IBaseCompanyEntity{
     name:string;
+    phone?:string;
+    email?:string;
+    address:string;
     isDefault:boolean;
     valueDate?:Date;
     totalEmployees:number;
