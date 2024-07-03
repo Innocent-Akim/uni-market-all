@@ -1,4 +1,4 @@
-import { ISuccursal } from "@uni/contracts";
+import { ICompany, ISuccursal } from "@uni/contracts";
 import { ICategorie } from "@uni/modules/categories/interfaces/icategories";
 import { IsNotEmpty, IsNumber, IsString } from "class-validator";
 
@@ -27,5 +27,5 @@ export class ProductDto{
 
     @IsNotEmpty()
     @IsString()
-    succursaleId:ISuccursal['id']
+    companyId:ICompany['id']
 }

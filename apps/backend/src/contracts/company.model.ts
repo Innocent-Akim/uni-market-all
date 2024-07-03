@@ -4,7 +4,7 @@ import { ISuccursal } from "./succursal.model";
 import { ISupplier } from "./supplier.model";
 import { ICar } from "./car.model";
 import { ICategorie } from "@uni/modules/categories/interfaces/icategories";
-import { IUser } from ".";
+import { IProducts, IUser } from ".";
 
 export interface ICompany extends IBaseCompanyEntity{
     name:string;
@@ -18,7 +18,7 @@ export interface ICompany extends IBaseCompanyEntity{
     imageUrl?:string;
     timeZone?: string;
     overview:string;
-    succersale?:ISuccursal[];
+    products?:IProducts[];
     custom?:ICustom[];
     supplier?:ISupplier[];
     categorie?:ICategorie[];
