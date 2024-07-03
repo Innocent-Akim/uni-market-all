@@ -11,10 +11,12 @@ import { StoreEntity } from "@uni/modules/store/entities/store.entity";
 import { SuccursaleEntity } from "@uni/modules/succursale/entities/succursale.entity";
 import { SupplierEntity } from "@uni/modules/supplier/entities/supplier.entity";
 import { UserEntity } from "@uni/modules/user/entities/user.entity";
-import { Column,Entity, ManyToOne, OneToMany} from "typeorm";
+import { Column,Entity, ManyToOne, OneToMany, RelationId} from "typeorm";
 
 @Entity({ name: 'deposits' })
 export class DepositEntity extends IBaseEntity implements IDeposit {
+
+  
 
     @Column()
     designation: string;
@@ -55,9 +57,10 @@ export class DepositEntity extends IBaseEntity implements IDeposit {
     
     @OneToMany(()=>UserEntity,(user)=>user.deposit)
     user?: IUser[];
+    
 
-
-
+    @RelationId((t:DepositEntity)=>t.succursale)
+    succursaleId?:string
 
     
 

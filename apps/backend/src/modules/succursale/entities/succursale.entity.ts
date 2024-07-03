@@ -9,7 +9,7 @@ import { CompanyEntity } from "@uni/modules/company/entities/company.entity";
 import { DepositEntity } from "@uni/modules/deposit/entities/deposit.entity";
 import { ProductsEntity } from "@uni/modules/products/entities/products.entity";
 import { UserEntity } from "@uni/modules/user/entities/user.entity";
-import { Column, Entity, JoinColumn, ManyToOne, OneToMany} from "typeorm";
+import { Column, Entity, JoinColumn, ManyToOne, OneToMany, RelationId} from "typeorm";
 
 @Entity({ name: 'succursales' })
 export class SuccursaleEntity extends IBaseEntity implements ISuccursal {
@@ -54,7 +54,6 @@ export class SuccursaleEntity extends IBaseEntity implements ISuccursal {
         onUpdate: 'CASCADE',
         nullable: true
     })
-    @JoinColumn()
     company?: ICompany;
 
 @OneToMany(()=>DepositEntity,(deposit)=>deposit.succursale)
@@ -62,4 +61,8 @@ deposit?: IDeposit[];
 
 @OneToMany(()=>UserEntity,(user)=>user.succursale)
 user?: IUser[];
+
+@RelationId((t:SuccursaleEntity)=>t.company)
+companyId?: string;
+
 }

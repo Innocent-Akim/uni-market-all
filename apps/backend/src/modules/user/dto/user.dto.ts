@@ -42,19 +42,19 @@ export class UserDto{
     @IsString()
     lastLogin?: Date;
 
-    @IsNotEmpty()
-    @IsString()
-    company?: ICompany;
+    // @IsNotEmpty()
+    // @IsString()
+    // company?: ICompany;
 
-    @IsOptional()
-    @IsString()
-    succursale?: ISuccursal;
+    // @IsOptional()
+    // @IsString()
+    // succursale?: ISuccursal;
 
-    @IsOptional()
-    @IsString()
-    deposit?: IDeposit;
+    // @IsOptional()
+    // @IsString()
+    // deposit?: IDeposit;
 
-    @IsOptional()
-    @IsString()
-    store?: IStore;
+    // @IsOptional()
+    // @IsString()
+    // store?: IStore;
 }

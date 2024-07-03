@@ -147,7 +147,7 @@ export class RequestContext {
 static currentSuccursaleId(): string | null {
 	try {
 		const user: IUser | null = RequestContext.currentUser();
-		return user ? user.succursale.id : null;
+		return user ? user.succursaleId : null;
 	} catch (error) {
 		return null;
 	}

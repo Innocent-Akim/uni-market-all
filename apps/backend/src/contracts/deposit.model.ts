@@ -7,6 +7,7 @@ export interface IDeposit extends IBaseSuccursale{
     mail:string; 
     store?:IStore[]
     succursale?:ISuccursal
+    succursaleId?:ISuccursal['id']
     stock_deposit?:IDepositSocks[];
     invoice_header?:IInvoiceHeader[]
     supply?:ISupply[]

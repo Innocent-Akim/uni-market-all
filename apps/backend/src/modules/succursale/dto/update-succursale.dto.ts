@@ -2,28 +2,32 @@ import { ICompany } from "@uni/contracts";
 import { Type } from "class-transformer";
 import { IsEmail, IsNotEmpty, IsOptional, IsString } from "class-validator";
 
-export class SuccursaleDto{
-    @IsNotEmpty()
+export class UpdateSuccursaleDto {
+    @IsNotEmpty() 
+    @IsString()
+    id:string;
+
+    @IsOptional() 
     @IsString()
     designation: string;
-    
-    @IsNotEmpty()
+
+    @IsOptional() 
     @IsString()
     adresse: string;
-    
-    @IsNotEmpty()
+
+    @IsOptional()
     @IsString()
     phone: string;
-    
-    @IsNotEmpty()
+
+    @IsOptional()
     @IsEmail()
     @IsString()
     mail: string;
-    
+
     @IsOptional()
-    @Type(()=>Number)
+    @Type(() => Number)
     totalEmployees: number;
-     
+
     @IsOptional()
     @IsString()
     imageUrl?: string;
@@ -31,7 +35,7 @@ export class SuccursaleDto{
     @IsString()
     overview: string;
 
-    
+
     @IsString()
     timeZone?: string;
 

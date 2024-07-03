@@ -29,6 +29,7 @@ import { SupplyDetailsModule } from './modules/supply.details/supply.details.mod
 import {JwtModule, JwtService} from  '@nestjs/jwt'
 import { ClsModule, ClsService } from 'nestjs-cls';
 import { RequestContext } from './context';
+
 /**
  *class module main for this application
  *
@@ -85,7 +86,7 @@ import { RequestContext } from './context';
     InvoiceHeaderModule,
     SupplyModule,
     UserModule,
-    SupplyDetailsModule
+    SupplyDetailsModule,
   ],
   // controllers: [],
   providers: [JwtService],

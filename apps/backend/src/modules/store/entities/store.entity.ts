@@ -7,7 +7,7 @@ import { DepositEntity } from "@uni/modules/deposit/entities/deposit.entity";
 import { SheetStoreEntity } from "@uni/modules/sheet.store/entities/sheet.store.entity";
 import { StoreStockEntity } from "@uni/modules/store.stock/entities/store.stock.entity";
 import { UserEntity } from "@uni/modules/user/entities/user.entity";
-import { Column, Entity, ManyToOne, OneToMany } from "typeorm";
+import { Column, Entity, ManyToOne, OneToMany, RelationId } from "typeorm";
 
 @Entity({ name: 'stores' })
 export class StoreEntity extends IBaseEntity implements IStore {
@@ -36,5 +36,8 @@ export class StoreEntity extends IBaseEntity implements IStore {
         nullable:true
     })
     user?: IUser[];
+
+    @RelationId((t:StoreEntity)=>t.deposit)
+    depositId?: string;
 
 }
