@@ -1,4 +1,4 @@
-import { ForbiddenException, HttpException, Injectable, NotFoundException } from '@nestjs/common';
+import { ForbiddenException, HttpException, HttpStatus, Injectable, NotFoundException } from '@nestjs/common';
 import { CrudService } from '@uni/crud';
 import { UserEntity } from '../entities/user.entity';
 import { InjectRepository } from '@nestjs/typeorm';
@@ -25,7 +25,7 @@ export class UserService extends CrudService<UserEntity> {
         const succursaleId = RequestContext.currentDepositId();
         const one_user = await this.typeOrmRepository.findOne({ where: [{ email: user.email }, { phone: user.phone }] });
         if (one_user) {
-            throw new ForbiddenException("Mail already in the dadabase !!!")
+            await this.appHelpers.handleException(HttpStatus.CONFLICT)
         }
         const password = await this.appHelpers.getHashPassword(user.password);
         const response = await this.typeOrmRepository.save({
@@ -52,8 +52,6 @@ export class UserService extends CrudService<UserEntity> {
             ...user,
             token: token
         };
-
-
     }
 
 

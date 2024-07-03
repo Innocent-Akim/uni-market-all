@@ -4,6 +4,7 @@ import { SuccursaleService } from './service/succursale.service';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { SuccursaleEntity } from './entities/succursale.entity';
 import { RouterModule } from '@nestjs/core';
+import { AppHelpers } from '@uni/helpers/app.helpers';
 
 @Module({
   imports:[
@@ -18,6 +19,6 @@ import { RouterModule } from '@nestjs/core';
   ],
 
   controllers: [SuccursaleController],
-  providers: [SuccursaleService]
+  providers: [SuccursaleService,AppHelpers]
 })
 export class SuccursaleModule {}

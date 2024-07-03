@@ -1,8 +1,9 @@
-import { Body, Controller, Post } from '@nestjs/common';
+import { Body, Controller, Post, UseGuards } from '@nestjs/common';
 import { CrudController } from '@uni/crud';
 import { SuccursaleEntity } from '../entities/succursale.entity';
 import { SuccursaleService } from '../service/succursale.service';
 import { SuccursaleDto } from '../dto/succursale.dto';
+import { AuthGuard } from '@uni/modules/auth/guards/auth.guard';
 
 @Controller()
 export class SuccursaleController extends CrudController<SuccursaleEntity> {
@@ -11,7 +12,8 @@ export class SuccursaleController extends CrudController<SuccursaleEntity> {
     ){
         super(succursaleService)
     }
-
+     
+    @UseGuards(AuthGuard) 
     @Post()
     async create(@Body() body:SuccursaleDto):Promise<SuccursaleEntity>{
         return await this.succursaleService.createSuccursale(body);
