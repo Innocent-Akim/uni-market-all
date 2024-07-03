@@ -1,4 +1,3 @@
-import { ISuccursal } from "@uni/contracts";
 import { IsEmail, IsMobilePhone, IsNotEmpty, IsString } from "class-validator";
 
 export class DepositDto {
@@ -18,9 +17,9 @@ export class DepositDto {
     @IsMobilePhone()
     phone: string;
    
-    @IsNotEmpty()
-    @IsString()
-    succursale:ISuccursal
+    // @IsNotEmpty()
+    // @IsString()
+    // succursale:ISuccursal
 
 
     
