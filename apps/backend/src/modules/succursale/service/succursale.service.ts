@@ -26,7 +26,7 @@ export class SuccursaleService extends CrudService<SuccursaleEntity> {
                 { designation: bodyRequest.designation }
             ]
         });
-        if (existend?.companyId===company) {
+        if (existend?.companyId === company) {
             await this.appHelpers.handleException(HttpStatus.CONFLICT)
         }
         const response = await this.typeOrmRepository.save({ ...bodyRequest, company });
@@ -36,8 +36,8 @@ export class SuccursaleService extends CrudService<SuccursaleEntity> {
     }
 
     async updateSuccursale(body: UpdateSuccursaleDto): Promise<SuccursaleEntity> {
-        const resultat = await this.typeOrmRepository.update({id:body?.id},{ ...body});
-        if(!resultat){
+        const resultat = await this.typeOrmRepository.update({ id: body?.id }, { ...body });
+        if (!resultat) {
             await this.appHelpers.handleException(HttpStatus.BAD_REQUEST)
 
         }
@@ -48,6 +48,16 @@ export class SuccursaleService extends CrudService<SuccursaleEntity> {
         });
 
         return response;
+
+    }
+
+
+    async findSuccursale(): Promise<SuccursaleEntity[]> {
+        const companyId = RequestContext.currentCompanyId();
+        return await this.typeOrmRepository.createQueryBuilder('succursales').where('succursales.companyId = :companyId', {
+            companyId
+        }).getMany();
+
 
     }
 }

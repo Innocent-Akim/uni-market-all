@@ -17,11 +17,11 @@ export interface IUser extends IBaseEntityModel{
     refreshTokenExpiration?:Date,
     image:string;
     lastLogin?:Date;
-    company?:ICompany;
     succursale?:ISuccursal;
     deposit?:IDeposit;
     store?:IStore;
     companyId?:ICompany['id'];
+    company?:ICompany;
     succursaleId?:ISuccursal['id'];
     depositId?:IDeposit['id'];
     storeId?:IStore['id']
