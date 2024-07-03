@@ -85,7 +85,7 @@ import { RequestContext } from './context';
     InvoiceHeaderModule,
     SupplyModule,
     UserModule,
-    SupplyDetailsModule
+    SupplyDetailsModule,
   ],
   // controllers: [],
   providers: [JwtService],

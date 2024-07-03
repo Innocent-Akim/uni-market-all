@@ -19,14 +19,22 @@ export class UserService extends CrudService<UserEntity> {
     ) { super(typeOrmUserRepository) }
 
     async createUser(user: UserDto): Promise<UserDto> {
-        const one_user = await this.typeOrmRepository.findOne({ where: { email: user.email } });
-        const companyId=RequestContext.currentCompanyId()
-        console.log('Company id============>',companyId)
+        const companyId = RequestContext.currentCompanyId();
+        const depositId = RequestContext.currentDepositId();
+        const storeId = RequestContext.currentStoreId();
+        const succursaleId = RequestContext.currentDepositId();
+        const one_user = await this.typeOrmRepository.findOne({ where: [{ email: user.email }, { phone: user.phone }] });
         if (one_user) {
             throw new ForbiddenException("Mail already in the dadabase !!!")
         }
         const password = await this.appHelpers.getHashPassword(user.password);
-        const response = await this.typeOrmRepository.save({ ...user, password });
+        const response = await this.typeOrmRepository.save({
+            ...user, password,
+            companyId: companyId,
+            depositId: depositId,
+            storeId: storeId,
+            succursaleId: succursaleId
+        });
         return response;
     }
 
@@ -42,7 +50,7 @@ export class UserService extends CrudService<UserEntity> {
         const token = await this.appHelpers.generateAuthToken(user);
         return {
             ...user,
-            token:token
+            token: token
         };
 
 
