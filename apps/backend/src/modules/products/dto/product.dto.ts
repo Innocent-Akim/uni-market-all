@@ -1,6 +1,7 @@
-import { ICompany, ISuccursal } from "@uni/contracts";
+import { ICompany, ISubcategorie, ISuccursal } from "@uni/contracts";
 import { ICategorie } from "@uni/modules/categories/interfaces/icategories";
-import { IsNotEmpty, IsNumber, IsString } from "class-validator";
+import { Type } from "class-transformer";
+import { IsNotEmpty,  IsOptional,  IsString } from "class-validator";
 
 export class ProductDto{
     @IsNotEmpty()
@@ -12,18 +13,20 @@ export class ProductDto{
     forme: string;
     
     @IsNotEmpty()
-    @IsNumber()
+    @Type(()=>Number)
     qteAlerte: number;
     
-    @IsNumber()
+    @IsOptional()
+    @Type(()=>Number)
     pudetail: number;
-
-    @IsNumber()
+    
+    @IsOptional()
+    @Type(()=>Number)
     pugros: number;
     
     @IsNotEmpty()
     @IsString()
-    categorieId:ICategorie['id']
+    subcategorieId:ISubcategorie['id']
 
     @IsNotEmpty()
     @IsString()
