@@ -22,12 +22,10 @@ export class ProductsService extends CrudService<ProductsEntity> {
         const companyId: any = RequestContext.currentCompanyId();
         const { designation } = products
         const reponse = await this.typeOrmRepository.createQueryBuilder('products').where('products.companyId = :companyId', {
-            companyId,
-        }).andWhere('products.designation = :designation', {
-            designation
-        }).getMany();
+            companyId
+        }).andWhere('products.designation = :designation', { designation }).getMany();
 
-        if (reponse?.length>0) {
+        if (reponse?.length > 0) {
             await this.appHelpers.handleException(HttpStatus.CONFLICT);
         }
         return await this.typeOrmRepository.save({ ...products, company: companyId });
