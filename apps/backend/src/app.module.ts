@@ -58,7 +58,11 @@ import { RequestContext } from './context';
     JwtModule.registerAsync({
       imports:[ConfigModule],
       useFactory:async(...args)=> ({
-          secret:process.env.JWT_SECRET
+          secret:process.env.JWT_SECRET,
+          global:true,
+          signOptions:{
+             expiresIn:'1h',
+          }
       }),
       inject:[],
       global:true

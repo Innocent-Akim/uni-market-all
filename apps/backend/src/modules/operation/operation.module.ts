@@ -4,6 +4,7 @@ import { OperationService } from './service/operation.service';
 import { RouterModule } from '@nestjs/core';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { OperationEntity } from './entities/operation.entity';
+import { AppHelpers } from '@uni/helpers/app.helpers';
 
 @Module({
   imports:[
@@ -11,6 +12,6 @@ import { OperationEntity } from './entities/operation.entity';
     TypeOrmModule.forFeature([OperationEntity])
   ],
   controllers: [OperationController],
-  providers: [OperationService]
+  providers: [OperationService,AppHelpers]
 })
 export class OperationModule {}

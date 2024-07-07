@@ -4,6 +4,7 @@ import { ProductsService } from './service/products.service';
 import { RouterModule } from '@nestjs/core';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { ProductsEntity } from './entities/products.entity';
+import { AppHelpers } from '@uni/helpers/app.helpers';
 
 @Module({
   imports:[
@@ -11,6 +12,6 @@ import { ProductsEntity } from './entities/products.entity';
     TypeOrmModule.forFeature([ProductsEntity])
   ],
   controllers: [ProductsController],
-  providers: [ProductsService]
+  providers: [ProductsService,AppHelpers]
 })
 export class ProductsModule {}

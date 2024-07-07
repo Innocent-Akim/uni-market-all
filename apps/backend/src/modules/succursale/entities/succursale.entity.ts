@@ -41,13 +41,7 @@ export class SuccursaleEntity extends IBaseEntity implements ISuccursal {
     @Column()
     status?: string;
 
-    @OneToMany(() => ProductsEntity, (products) => products.succursale, {
-        onDelete: 'SET NULL',
-        cascade: true,
-        onUpdate: 'CASCADE',
-    })
-    @JoinColumn()
-    products: IProducts[];
+ 
     @ManyToOne(() => CompanyEntity, (company) => company.succersale, {
         onDelete: 'SET NULL',
         cascade: true,

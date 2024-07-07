@@ -11,4 +11,6 @@ export interface IOperation extends IBaseEntityModel{
     currentDate:Date;
     types:string;
     observation:string;
+    
+
 }

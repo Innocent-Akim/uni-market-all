@@ -1,35 +1,49 @@
+import { RequestContext } from "@uni/context";
 import { ICustom, IDeposit, IInvoiceDetails, IInvoiceHeader, IPayment } from "@uni/contracts";
 import { IBaseEntity } from "@uni/entities";
 import { CustomEntity } from "@uni/modules/custom/entities/custom.entity";
 import { DepositEntity } from "@uni/modules/deposit/entities/deposit.entity";
 import { InvoiceDetailsEntity } from "@uni/modules/invoice.details/entities/invoice.details.entity";
 import { PaymentEntity } from "@uni/modules/payment/entities/payment.entity";
-import { Column, CreateDateColumn, DeleteDateColumn, Entity, ManyToOne, OneToMany, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
+import { BeforeInsert, Column, Entity, ManyToOne, OneToMany, getRepository } from "typeorm";
 
-@Entity({name:'invoice_header'})
-export class InvoiceHeaderEntity extends IBaseEntity implements IInvoiceHeader{
-    @Column()
-    typeInvoice: string;
+@Entity({ name: 'invoice_headers' })
+export class InvoiceHeaderEntity extends IBaseEntity implements IInvoiceHeader {
+  @Column({ nullable: false, update: false })
+  indexNumber?: number;
 
-    @Column()
-    dateInvoice?: Date;
+  @Column()
+  typeInvoice: string;
 
-    @Column()
-    check?: boolean;
+  @Column()
+  dateInvoice?: Date;
 
-    @Column()
-    sales_types: string;
+  @Column()
+  check?: boolean;
 
-    @ManyToOne(()=>CustomEntity,(custom)=>custom.invoice)
-    custom?: ICustom;
+  @Column()
+  sales_types: string;
 
-    @ManyToOne(()=>DepositEntity,(deposit)=>deposit.invoice_header)
-    deposit?: IDeposit;
-    
-    @OneToMany(()=>InvoiceDetailsEntity,(details)=>details.invoice)
-    invoice_dataits?: IInvoiceDetails[];
+  @ManyToOne(() => CustomEntity, (custom) => custom.invoice)
+  custom?: ICustom;
 
-    @OneToMany(()=>PaymentEntity,(payement)=>payement.invoice_header)
-    payment?: IPayment[];
+  @ManyToOne(() => DepositEntity, (deposit) => deposit.invoice_header)
+  deposit?: IDeposit;
 
+  @OneToMany(() => InvoiceDetailsEntity, (details) => details.invoice)
+  invoice_dataits?: IInvoiceDetails[];
+
+  @OneToMany(() => PaymentEntity, (payement) => payement.invoice_header)
+  payment?: IPayment[];
+
+  @BeforeInsert()
+  async generateInvoiceId() {
+    const depositId = RequestContext.currentDepositId();
+    const latestInvoice = await getRepository(InvoiceHeaderEntity)
+    .createQueryBuilder('invoice_headers')
+    .where('invoice_headers.id = :id', { id: depositId })
+    .select('MAX(invoice_headers.indexNumber)', 'max')
+    .getRawOne();
+  this.indexNumber = latestInvoice.max ? latestInvoice.max + 1 : 1;
+  }
 }

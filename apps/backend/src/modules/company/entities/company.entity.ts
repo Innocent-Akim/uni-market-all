@@ -1,4 +1,4 @@
-import { ICar, ICustom, ISupplier, IUser } from "@uni/contracts";
+import { ICar, ICustom, IProducts, ISupplier, IUser } from "@uni/contracts";
 import { ICompany } from "@uni/contracts/company.model";
 import { ISuccursal } from "@uni/contracts/succursal.model";
 import { IBaseEntity } from "@uni/entities";
@@ -6,6 +6,7 @@ import { CarEntity } from "@uni/modules/car/entities/car.entity";
 import { CategoriesEntity } from "@uni/modules/categories/entities/categorie.entity";
 import { ICategorie } from "@uni/modules/categories/interfaces/icategories";
 import { CustomEntity } from "@uni/modules/custom/entities/custom.entity";
+import { ProductsEntity } from "@uni/modules/products/entities/products.entity";
 import { SupplierEntity } from "@uni/modules/supplier/entities/supplier.entity";
 import { UserEntity } from "@uni/modules/user/entities/user.entity";
 import { Column, Entity, OneToMany } from "typeorm";
@@ -70,5 +71,11 @@ export class CompanyEntity extends IBaseEntity implements ICompany {
     nullable: true
   })
   user?: IUser[];
+
+
+  @OneToMany(() => ProductsEntity, (products) => products.company, {
+    nullable: true
+  })
+  products?: IProducts[];
 
 }

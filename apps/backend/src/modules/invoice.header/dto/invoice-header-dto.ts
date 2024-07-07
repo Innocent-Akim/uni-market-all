@@ -2,6 +2,11 @@ import { ICustom, IDeposit } from "@uni/contracts";
 import { IsBoolean, IsDateString, IsNotEmpty, IsString } from "class-validator";
 
 export class InvoiceHeaderDto{
+
+     
+    @IsNotEmpty()
+    @IsString()
+    indexNumber: number;
     
     @IsNotEmpty()
     @IsString()

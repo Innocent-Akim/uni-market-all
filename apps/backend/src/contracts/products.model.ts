@@ -1,7 +1,7 @@
-import { IBaseSuccursale, IDepositSocks, IImages, IInvoiceDetails, ISheetDeposit, ISheetStore, IStoreStocks, ISubcategorie, ISupplyDetails } from ".";
+import { IBaseCompanyEntity, IBaseSuccursale, IDepositSocks, IImages, IInvoiceDetails, ISheetDeposit, ISheetStore, IStoreStocks, ISubcategorie, ISupplyDetails } from ".";
 
 
-export interface IProducts extends IBaseSuccursale {
+export interface IProducts extends IBaseCompanyEntity {
     designation: string;
     forme: string;
     qteAlerte: number;
