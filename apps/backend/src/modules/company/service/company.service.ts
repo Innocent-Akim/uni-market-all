@@ -14,7 +14,13 @@ export class CompanyService extends CrudService<CompanyEntity> {
 
     async saveCompany(company: CompanyDTO): Promise<CompanyEntity> {
         try {
-            const existed = await this.typeOrmRepository.findOne({ where: [{ name: company.name }, { phone: company.phone }, { email: company.email }] });
+            const existed = await this.typeOrmRepository.findOne({
+                where: [
+                    { name: company.name },
+                    { phone: company.phone },
+                    { email: company.email }
+                ]
+            });
             if (existed) {
                 throw new ConflictException('Company already exists with the provided name, phone, or email.')
             }

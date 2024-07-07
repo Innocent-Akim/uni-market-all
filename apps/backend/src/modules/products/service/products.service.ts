@@ -19,22 +19,31 @@ export class ProductsService extends CrudService<ProductsEntity> {
 
 
     async createProducts(products: ProductDto): Promise<ProductsEntity> {
-        const companyId: any = RequestContext.currentCompanyId();
-        const { designation } = products
-        const reponse = await this.typeOrmRepository.createQueryBuilder('products').where('products.companyId = :companyId', {
-            companyId
-        }).andWhere('products.designation = :designation', { designation }).getMany();
+        try {
+            const companyId: any = RequestContext.currentCompanyId();
+            const { designation } = products
+            const reponse = await this.typeOrmRepository.createQueryBuilder('products').where('products.companyId = :companyId', {
+                companyId
+            }).andWhere('products.designation = :designation', { designation }).getMany();
+            if (reponse?.length > 0) {
+                await this.appHelpers.handleException(HttpStatus.CONFLICT);
+            }
+            return await this.typeOrmRepository.save({ ...products, company: companyId });
+        } catch (error) {
+            await this.appHelpers.handleException(HttpStatus.FORBIDDEN)
 
-        if (reponse?.length > 0) {
-            await this.appHelpers.handleException(HttpStatus.CONFLICT);
         }
-        return await this.typeOrmRepository.save({ ...products, company: companyId });
     }
 
     async findProducts(): Promise<ProductsEntity[]> {
-        const companyId: any = RequestContext.currentCompanyId();
-        return await this.typeOrmRepository.createQueryBuilder('products').where('products.companyId= :companyId', {
-            companyId
-        }).getMany();
+        try {
+            const companyId: any = RequestContext.currentCompanyId();
+            return await this.typeOrmRepository.createQueryBuilder('products')
+                .where('products.companyId= :companyId', {
+                    companyId
+                }).getMany();
+        } catch (error) {
+            await this.appHelpers.handleException(HttpStatus.FORBIDDEN);
+        }
     }
 }

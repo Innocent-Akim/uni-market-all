@@ -1,9 +1,9 @@
 import { IOperation } from "@uni/contracts";
-import { Column, CreateDateColumn, DeleteDateColumn, Entity, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
+import { IBaseEntity } from "@uni/entities";
+import { Column,  Entity, RelationId} from "typeorm";
+
 @Entity({name:'operations'})
-export class OperationEntity implements IOperation {
-    @PrimaryGeneratedColumn('uuid')
-    id?: string;
+export class OperationEntity extends IBaseEntity implements IOperation {
 
     @Column()
     amount: number;
@@ -35,19 +35,8 @@ export class OperationEntity implements IOperation {
     @Column()
     observation: string;
 
-    @Column()
-    isActive?: boolean;
+    
+        
+    // @RelationId((t:OperationEntity))
 
-    @Column()
-    isArchived?: boolean;
-
-    @CreateDateColumn()
-    createAt?: Date;
-
-    @UpdateDateColumn()
-    updateAt?: Date;
-
-
-    @DeleteDateColumn()
-    deleteAt?: Date;
 }
